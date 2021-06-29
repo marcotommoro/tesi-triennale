@@ -152,7 +152,55 @@ Questa suddivisione consente a diverse figure professionali, di lavorare in modo
 
 Per quanto riguarda le richieste di dati al database, django effettua una mappatura automatica tra i modelli e le tabelle logiche sul database, evitando così ai programmatori di effettuare le classiche richieste in linguaggio SQL, ma permettendo di utilizzare oggetti, rendendo la scrittura del codice più ordinata e pulita.
 
-Questa tecnica, chiamata \textbf{ORM} (Object Relational Mapping), rende il codice più sicuro dato che impedisce, di natura, qualsiasi attacco di SQL injection: una tecnica di iniezione di codice, usata per attaccare applicazioni che gestiscono dati attraverso database relazionali sfruttando il linguaggio SQL. Il mancato controllo dell'input dell'utente permette di inserire artificiosamente delle stringhe di codice SQL che saranno eseguite dall'applicazione server: grazie a questo meccanismo è possibile far eseguire comandi SQL anche molto complessi, dall'alterazione dei dati, alla creazione di nuovi utenti, al download completo dei contenuti nel database.
+Questa tecnica, chiamata \textbf{ORM} (Object Relational Mapping), rende il codice più sicuro dato che impedisce, di natura, qualsiasi attacco di SQL injection: una tecnica di iniezione di codice, usata per infettare applicazioni che gestiscono dati attraverso database relazionali sfruttando il linguaggio SQL. Il mancato controllo dell'input dell'utente permette di inserire artificiosamente delle stringhe di codice SQL che saranno eseguite dall'applicazione server: grazie a questo meccanismo è possibile far eseguire comandi SQL anche molto complessi, dall'alterazione dei dati, alla creazione di nuovi utenti, al download completo dei contenuti nel database.
+
+\subsection{Ideazione}
+Per la creazione del gestore di contenuti ci si è prima concentrati sull’ideazione e sulle caratteristiche principali del cms.
+Si definiscono applicazioni tutti i moduli aggiuntivi ed opzionali relativi ad un sito web, nello specifico sono:
+\begin{quote}
+    chi siamo, banner, blog, catalogo, documenti, homepage, offerte, portfolio, camere, luoghi, recensioni, e-commerce, negozi.
+\end{quote}
+Le caratteristiche principali di cui CUBO deve godere sono:
+\begin{itemize}
+    \item \textbf{flessibilità} nel decidere di utilizzare moduli diversi in progetti diversi. Per esempio per ogni sito web è possibile poter scegliere se utilizzare o meno le applicazioni (come catalogo o e-commerce) e, in caso di necessità, personalizzare ognuno di essi per il progetto in specifico;
+    \item \textbf{soft-coded}, strutturare il codice più possibile dinamico, in modo da apportare modifiche alle singole applicazioni senza dover compromettere l’integrità del resto del codice;
+    \item \textbf{modularità}: la possibilità di aggiungere funzionalità recenti ad applicazioni più obsolete senza causare errori;
+    \item \textbf{semplice} da gestire per il cliente;
+    \item \textbf{aggiornato} alle grafiche moderne per i visitatori
+\end{itemize}
+Essendoci una gran mole di applicazioni, si è pensato di suddividere il progetto in classi e sottoclassi, in modo da seguire la filosofia del “code reuse” (riuso del codice), e non dover quindi riscrivere lo stesso script in più punti diversi del progetto.
+Con riuso di codice si intende la pratica, estremamente comune nella programmazione, di richiamare o invocare parti di codice precedentemente già scritte ogni qualvolta risulta necessario, senza doverle riscrivere, e nel caso in futuro si dovessero apportare modifiche, applicarle una volta sola.
+
+\subsection{Workflow}
+Il work-flow segue il paradigma MVT (Model-View-Template) precedentemente discusso.
+Per questa sezione e le successive si prende come esempio il modello \textit{Post} presente nell’applicazione \textit{Blog}.
+
+Ogni modello del CUBO estende la classe \textit{StandardPageMetaModel} che racchiude al suo interno gli attributi di base comuni ad ogni sotto modello, (come titolo, sottotitolo, data di creazione, slug, immagine…).
+Il modello \textit{Post} comprende, oltre agli attributi dello \textit{StandardPageMetaModel}, anche una categoria, il contenuto del post, i tag e i post correlati.
+Una volta creato il modello è necessario creare i file di migrazione per il database.
+Le migrazioni sono il modo tramite il quale i cambiamenti che vengono effettuati nei file dei modelli, vengono effettivamente riflessi anche nelle tabelle 2sul database.
+Ogni volta che si effettuano modifiche ai file dei modelli, è necessario generare anche i file di migrazione. Django include i comandi per autogenerare i file di migrazioni e per riflettere le modifiche sul database per rendere effettivi i  cambiamenti:
+\begin{verbatim}
+                  python manage.py makemigrations
+                  python manage.py migrate
+\end{verbatim}
+La vista è una funzione che viene invocata quando l’utente apre una qualsiasi pagina sul sito web (anche la homepage), e restituisce tutte le informazioni necessarie per strutturare la pagina.
+Per esempio, da come si può dedurre dall’immagine xx, si tratta della la funzione per recuperare i post appartenenti ad una certa categoria e creare una lista da 12 post, che verrà poi passata al template.
+
+Lo scopo dei template è quello di trasformare le informazioni logiche in elementi di markup html. Come si può notare dall’immagine xxx i dettagli del post (immagine, titolo, e sottotitolo) non sono hard-coded ma sono ricavate dalle variabili recuperate dalla vista.
+I template sono semplici file html, con una sintassi adattata per le variabili di Django; è inoltre possibile eseguire funzioni direttamente all’interno del codice in caso di necessità.
+
+Quando viene effettuata una richiesta, il server di django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework basati, django effettua un server-side rendering, cioè, come si anticipato poco fa, ad ogni richiesta, il server effettua tutte le operazioni necessarie, e poi restituisce al client solamente il codice html.
+Altri framework, come React o Vue che son basati su javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito web.
+
+Entrambe le opzioni sono valide, la scelta dipende dal contesto:
+\begin{itemize}
+    \item \textbf{server-side} rendering: gode di migliori performance, di sicurezza dei dati, ma le pagine web restano statiche;
+    \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
+\end{itemize}
+Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura sicura attraverso l’isolamento dei dati di Django e dinamica tramite javascript. Per questo la soluzione migliore è l’innesto di script Vue.js nei template django html.
+
+
 
 
 
