@@ -18,6 +18,7 @@
 
 \maketitle
 \clearpage
+\clearpage
 \begin{abstract}
 \normalsize
 Questa tesi è volta a presentare un’analisi approfondita dell' ambiente di sviluppo utilizzato e di tutti i servizi coinvolti per esternalizzare il lavoro e la sicurezza.
@@ -198,14 +199,68 @@ Entrambe le opzioni sono valide, la scelta dipende dal contesto:
     \item \textbf{server-side} rendering: gode di migliori performance, di sicurezza dei dati, ma le pagine web restano statiche;
     \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
 \end{itemize}
-Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura sicura attraverso l’isolamento dei dati di Django e dinamica tramite javascript. Per questo la soluzione migliore è l’innesto di script Vue.js nei template django html.
+Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura sicura attraverso l’isolamento dei dati tramite server-side e dinamica tramite client-side. Per questo progetto la soluzione migliore è l’innesto di script Vue.js nei template html.
+
+\subsection{Pannello amministratore}
+La struttura del sito web parte dal pannello amministratore dove è possibile modificare tutta la configurazione del sito web e caricare i contenuti che si andranno poi a visualizzare.2
 
 
 
+\clearpage
+\section{Scelte tecnologiche}
+In questa sezione si analizzano nel dettaglio le scelte tegnologiche che si adottano nel passagggio tra sviluppo e produzione di un'applicazione web.
 
+\subsection{Server}
 
+Una volta che l’applicazione web è stata sviluppata, è necessario assicurarsi che sia accessibile a tutti sul World Wide Web (WWW). Per fare ciò, ci sono tre principali alternative che andremo ad analizzare nel dettaglio elencandone inoltre, i vantaggi e gli svantaggi:
+\begin{enumerate}
+    \item acquistare un server fisico;
+    \item acquistare un server in cloud;
+    \item acquistare uno spazio gestito.
+\end{enumerate}
+1 --- con “acquistare un server fisico” si intende l’acquisto di tutti i componenti necessari per comporre un computer dedicato a uno o più siti web. Per questa soluzione sono necessarie diverse competenze:
 
+\begin{itemize}
+    \item essere aggiornati sui migliori componenti sul mercato;
+    \item saper comporre un server;
+    \item saper gestire un server, a partire dall’installazione del sistema operativo;
+    \item saper gestire la sicurezza delle connessioni;
+    \item saper gestire i database;
+    \item saper gestire i backup;
+    \item saper gestire gli aggiornamenti software;
+    \item saper gestire i malfunzionamenti hardware-software;
+\end{itemize}
 
+Come si può notare dall’elenco delle competenze, sono necessari uno o più sistemisti che si dedichino alla gestione del server, e di tutto ciò che gli gira intorno.
+Scegliere questa alternativa implica avere la responsabilità completa della gestione del server dalla propria parte, ma anche che nessun altro avrà i permessi di accedere ai dati (se la sicurezza è adeguata), e che la privacy dell’intero ecosistema è garantita. Uno svantaggio da tenere in considerazione con questa opzione è che i componenti non durano per sempre, possono danneggiarsi, guastarsi, e vanno quindi sostituiti con dei componenti nuovi, inoltre per garantire la privacy come detto precedentemente, è necessario gestire accuratamente la sicurezza.
+
+2 --- con “acquistare un server in cloud” si intende l’utilizzo di una IAAS (infrastructure as a service). A differenza della soluzione precedente, questa opzione risparmia tre passaggi fondamentali del setup di un server: acquisto componenti, composizione server e installazione sistema operativo.
+Questa soluzione è perfetta per chi vuole la completa autonomia sul proprio server, in modo da poter gestire applicazioni complesse, ma allo stesso tempo non deve tener conto degli svantaggi dell’opzione precedente. Le performance dei server sono garantite dal provider del servizio che curerà l’obsolescenza dei componenti e la loro costante manutenzione. Il provider inoltre si fa carico di alcuni livelli di sicurezza per l’accesso alle risorse. Esempi di aziende che offrono queste infrastrutture sono Digitalocean, Amazon Lightsail, Google cloud platform o Microsoft Azure.
+
+3 –-- con “acquistare uno spazio gestito” si intende l’utilizzo di una PAAS (platform as a service). Questa soluzione permette allo sviluppatore di concentrarsi unicamente sullo sviluppo di applicazioni migliori, senza investire tempo nella preparazione e manutenzione del server e del software di gestione, che sarà completamente a carico del provider della piattaforma.
+Il modello di piattaforma più diffuso negli ultimi anni è sicuramente Docker, una tecnologia di containerizzazione che consente la creazione e l'utilizzo dei container Linux.
+Un container Linux è un insieme di uno o più processi isolati dal resto del sistema. Poiché tutti i file necessari per eseguire tali processi vengono forniti da un'immagine distinta, i container Linux sono portabili e coerenti in tutti gli ambienti, dallo sviluppo, ai test, fino alla produzione. Questo li rende molto più veloci rispetto ai tradizionali flussi di sviluppo che dipendono dalla replica degli ambienti di test tradizionali. I container, oltre a godere di una grandissima popolarità e ad essere apprezzati per la loro facilità d'uso, hanno un ruolo importante anche nella sicurezza IT, poiché la compromissione di un singolo container non va ad influire sull’intero sistema.
+Docker considera i container come macchine virtuali modulari estremamente leggere, offrendo la flessibilità di creare, distribuire, copiare e spostare i container da un ambiente all'altro, ottimizzando così le app per il cloud.
+
+Come si può notare dall’immagine sottostante, a differenza delle classiche macchine virtuali, i container linux condividono lo stesso sistema operativo, e risultano quindi molto più performanti, motivo principale della loro diffusione.
+
+Studio Indaco ha deciso di optare per la terza categoria di deploy di un’applicazione web. In particolare vengono utilizzari due diversi servizi in base alle necessità di risorse e sviluppo del cliente: Heroku e fly.io.
+
+\subsection{Database}
+Con base di dati (o banca dati, a volte abbreviato con la sigla DB, dall'inglese database) in informatica si indica un insieme di dati strutturati ovvero omogeneo per contenuti e formato, memorizzati in un computer. Questi rappresentano di fatto la versione digitale di un archivio dati o schedario.
+Le informazioni contenute in una banca dati sono strutturate e collegate tra loro secondo un particolare modello logico scelto dal progettista, tra relazionale, gerarchico, reticolare o a oggetti. Gli utenti si interfacciano con i databae dati attraverso i cosiddetti linguaggi di interrogazione come ad esempio SQL e grazie a particolari applicazioni software dedicati, come il DBMS (database management system).
+
+SQL ()……….
+
+Un DBMS è un software che si frappone fra l’utente ed i dati veri e propri. Grazie a questo strato intermedio l’utente e le applicazioni non accedono ai dati così come sono memorizzati effettivamente, cioè alla loro rappresentazione fisica, ma ne vedono solamente una rappresentazione logica. Ciò permette un elevato grado di indipendenza fra le applicazioni e la memorizzazione fisica dei dati. L’amministratore del database, se ne sente la necessità, può decidere di memorizzare i dati in maniera differente o anche di cambiare il DBMS senza che le applicazioni, e quindi gli utenti, ne risentano. La cosa importante è che non venga cambiata la rappresentazione logica di quei dati, che è la sola cosa che i loro utilizzatori conoscono. Questa rappresentazione logica viene chiamata ‘schema del database’ ed è la forma di rappresentazione dei dati più a basso livello a cui un utente del database può accedere.
+
+Esistono svariati DBMS con caratteristiche e casi d’uso molto differenti, ma si possono classificare in due categorie principali: ‘SQL’ e ‘NO SQL’.
+
+SQL (Structured Query Language) che, come suggerisce il nome, è un linguaggio volto all’interrogazione di dati altamente strutturati in tabelle prima definite.
+A differenza dei linguaggi NO SQL (Not Only SQL), che non hanno una struttura fissa, ma nascono dunque con l’idea di rappresentare dati eterogenei tra di loro e che non hanno sempre gli stessi attributi.
+
+I DBMS NO SQL sono in genere più veloci rispetto alla loro controparte, ma non sempre sono adatti ad ogni caso d’uso. È preferibile utilizzare un database SQL quando si andranno ad interrogare i DBMS con query complesse ed a lavorare con tipi di dati in relazione tra di loro; è invece preferibile l’utilizzo di un database NO SQL quando si necessita di più flessibilità nei dati e le query sono realtivamente semplici.
+Come con la dura scelta del server, lo sviluppatore/sistemista è chiamato a decidere anche dove posizionare il proprio database, se gestirlo autonomamente o acquistarne uno in cloud da un fornitore di servizi. Tra i più famosi fornitori di servizi troviamo Amazon AWS (dove Studio Indaco depone i propri database).
 
 
 \end{document}
