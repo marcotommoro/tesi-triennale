@@ -11,6 +11,9 @@
 \renewcommand\refname{Bibliografia}
 \renewcommand{\figurename}{Figura}
 
+\usepackage{fancyvrb}
+\newcommand\verbatimbold[1]{\textbf{#1}}
+\usepackage{tgcursor}
 
 \usepackage{caption}
 \usepackage{graphicx}
@@ -166,6 +169,7 @@ Con riuso di codice si intende la pratica, estremamente comune nella programmazi
 
 \clearpage
 
+
 \subsection{Struttura}
 In questa sezione si illustra la struttura completa e finita di Cubo, introducendo le differenti parti che si descrivono nei successivi capitoli.
 \begin{figure}[H]
@@ -184,24 +188,23 @@ La funzione dei \textbf{template} è quella di trasformare le informazioni logic
 % Come si può notare dall’immagine xxx i dettagli del post (immagine, titolo, e sottotitolo) non sono hard-coded ma sono ricavate dalle variabili recuperate dalla vista.
 I template sono semplici file html, con una sintassi adattata per le variabili di Django; è inoltre possibile eseguire funzioni direttamente all’interno del codice in caso di necessità.
 
-Quando viene effettuata una richiesta, il server di django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework basati, django effettua un server-side rendering: il server effettua tutte le operazioni necessarie, e poi restituisce al browser client solamente il codice html.
-Altri framework, come React o Vue.js che son basati su javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito web.
-
+Quando viene effettuata una richiesta, il server di django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework, django effettua un server-side rendering: il server effettua tutte le operazioni necessarie, e poi restituisce al browser client solamente il codice html.
+Altri framework, come React o Vue.js, basati su javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito web.
 
 Entrambe le opzioni sono valide, la scelta dipende dal contesto:
 \begin{itemize}
     \item \textbf{server-side} rendering: gode di migliori performance, di sicurezza dei dati, ma le pagine web rimangono statiche;
     \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
 \end{itemize}
-Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura sicura attraverso l’isolamento dei dati tramite server-side e dinamica tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template django html.
+Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura \textbf{sicura} attraverso l’isolamento dei dati tramite server-side e \textbf{dinamica} tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template django html.
 
 \subsubsection{Modelli astratti}
 Con modelli astratti si intende la creazione di classi standard (o estensione di classi Django), estendibili ed adattabili a molteplici situazioni. Per esempio, la classe astratta \textit{StandardPageMetaModel} è utilizzata come classe padre per ogni modello sul database, dato che racchiude al suo interno attributi di base comuni ad ogni modello, come titolo, sottotitolo, data di creazione/modifica, slug, immagine.
 
-Oltre ai modelli astratti dentro a Cubo sono state implementate molteplici classi astratte, che spaziano dai form alle tabelle alle viste, che attraverso il principio dell'ereditarietà si riesce a riciclare le stesse righe di codice per diversi modelli e applicazioni. Per esempio la classe \textit{BaseCreate} è la classe padre per ogni vista comprensiva di un form (form-view) ed estende tre classi di django \textit{StaffuserRequiredMixin}, \textit{SuccessMessageMixin} e \textit{CreateView}, che permettono la creazione di una form-view ed effettuare i controlli sui permessi di amministratore e la validazione del form.
+Oltre ai modelli astratti dentro a Cubo sono state implementate molteplici classi astratte, che spaziano dai form alle tabelle alle viste, e attraverso il principio dell'ereditarietà si riesce a riciclare le stesse righe di codice per diversi modelli e applicazioni. Per esempio la classe \textit{BaseCreate} è la classe padre per ogni vista comprensiva di un form (form-view) ed estende tre classi di django \textit{StaffuserRequiredMixin}, \textit{SuccessMessageMixin} e \textit{CreateView}, che permettono la creazione di una form-view ed effettuare i controlli sui permessi di amministratore e la validazione del form.
 \begin{verbatim}
     class BaseCreate(StaffuserRequiredMixin,
-                     SuccessMessageMixin, CreateView):
+                     SuccessMessageMixin, CreateView)
 \end{verbatim}
 
 Oltre a \textit{BaseCreate}, vengono riportate per completezza anche le altre classi \textit{Base} che si riferiscono ai form-view a livello amministratore, che attraverso il nome si autodescrivono.
@@ -211,23 +214,24 @@ Oltre a \textit{BaseCreate}, vengono riportate per completezza anche le altre cl
     BaseIsFeatured, BaseIsReady, BaseRank.
 \end{verbatim}
 
-\textit{BaseCreate} (e tutte le altre definites) è una classe astratta e per renderla concreta è necessario associarla ad un caso reale: per la creazione di una form-view per il modello \textit{Post} presente nell'applicazione \textit{Blog}, è necessario estendere la classe \textit{BaseCreate} e sovrascrivere gli attributi specifici della classe nel caso d'uso (modello, form, template e messaggio di corretta crezione). Nell'esempio riportato sotto si definisce la creazione di una classe per la creazione di un'istanza della classe \textit{Post}:
+\textit{BaseCreate} (e tutte le altre appena elencate) è una classe astratta e per renderla concreta è necessario estenderla in un caso reale: per la creazione di una form-view per il modello \textit{Post} presente nell'applicazione \textit{Blog}, è necessario estendere la classe \textit{BaseCreate} e sovrascrivere gli attributi specifici della classe nel caso d'uso (modello, form, template e messaggio di corretta crezione). Nell'esempio riportato sotto si definisce la creazione di una classe per la creazione di un'istanza della classe \textit{Post}:
 \begin{verbatim}
     class PostCreate(BaseCreate):
         model = Post
         form_class = PostForm
         template_name = "blog/admin/post_form.html"
-        success_message = "%(title_it)s salvato con successo."
+        success_message = "%(title_it)s salvato
+                           con successo."
 \end{verbatim}
 
 \subsubsection{Applicazioni Cubo}
-Le applicazioni sono il cuore di Cubo. Contengono al loro interno le implementazioni reali delle classi astratte di Cubo discusse nella sezione precedente. Le applicazioni sono delle sotto-cartelle di cubo che racchiudono al loro interno modelli, viste, template e url specifici per l'applicazione, oltre ad ogni file necessario per il corretto funzionamento di essa. Per la creazione di un modello specifico è necessario estendere la classe \textit{StandardPageMetaModel} e dopodichè definire tutti gli attributi specifici per quel modello dell'applicazione. Per il modello \textbf{Post}, oltre agli attributi standard, si definiscono
+Le applicazioni sono il cuore di Cubo. Contengono al loro interno le implementazioni reali delle classi astratte di Cubo discusse nella sezione precedente. Le applicazioni sono delle sotto-cartelle di cubo che racchiudono al loro interno modelli, viste, template e url specifici per l'applicazione, oltre ad ogni file necessario per il corretto funzionamento di essa. Per la creazione di un modello specifico è necessario estendere la classe \textit{StandardPageMetaModel} e dopodichè definire tutti gli attributi specifici per quel modello dell'applicazione. Per il modello \textbf{Post}, oltre agli attributi standard, si definiscono:
 \begin{itemize}
     \item la categoria di un post;
-    \item blocchi personalizzati attravers il campo JSONField;
-    \item gli articoli correlati;
-    \item i tag relativi;
-    \item l'ordinamento per il fetch automatico dal database e le etichette del modello.
+    \item blocchi personalizzati (vengono discussi successivamente);
+    \item articoli correlati;
+    \item tag relativi al post;
+    \item l'ordinamento per il fetch dal database e le etichette del modello.
 \end{itemize}
 
 
@@ -252,7 +256,7 @@ Le applicazioni sono il cuore di Cubo. Contengono al loro interno le implementaz
             verbose_name = "articolo"
             verbose_name_plural = "articoli"
 \end{verbatim}
-Per ogni applicazione, oltre ad estendere i modelli specifici attraverso il padre \textit{StandardPageMetaModel}, si estendono anche i form a livello utente attraverso la classe \textit{BaseModelForm} che racchiude tutti gli attributi della \textit{StandardPageMetaModel} e una funzione di inizializzazione di base.
+Per ogni applicazione, oltre a definire i modelli estendendo il padre \textit{StandardPageMetaModel}, si creano anche i Form specifici a livello utente estendendo la classe \textit{BaseModelForm} che racchiude tutti gli attributi della \textit{StandardPageMetaModel} e una funzione di inizializzazione di base dei campi.
 
 \begin{verbatim}
     class PostForm(BaseModelForm):
@@ -265,7 +269,71 @@ Per ogni applicazione, oltre ad estendere i modelli specifici attraverso il padr
                        "tags": Select2MultipleWidget}
 \end{verbatim}
 
-La classe padre di ogni form a livello di applicazione è \textit{BaseModelForm} che racchi
+Per quanto riguarda i template delle specifiche applicazioni, si applica, anche su di essi, il principio dell'ereditarietà (come nei modelli e nelle viste), perché ogni template estende il padre \textit{\_base.html}. Il template padre definisce la struttura base della pagina html comprensiva di tutte le sue parti. Questo template è suddiviso in blocchi per integrarsi meglio e senza ripetizione di codice una volta che viene esteso. Suddividere in blocchi un tempalte significa racchiudere suddividere la pagina porzioni di codice. Per esempio una pagina html è possibile inizialmente suddividerla in due blocchi: \textit{head} e \textit{body}. Il file \textit{\_base.html} prenderà quindi la struttura di:
+
+\begin{Verbatim}[commandchars=\\\[\]]
+_______________________________________________________
+<html>
+    <head>
+        \verbatimbold[{% block head %}]
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible"
+                  content="IE=edge">
+            <meta name="viewport" ...
+        \verbatimbold[{% endblock head %}]
+    </head>
+
+    <body>
+        \verbatimbold[{% block body %}]
+            <h1>Pagina padre</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua
+            </p>
+        \verbatimbold[{% endblock body %}]
+    </body>
+</html>
+_______________________________________________________
+\end{Verbatim}
+Per questo esempio si presuppone che ogni pagina abbia gli stessi tag nel tag \textit{head}.
+In questo caso, per la "pagina figlio" che estende \textit{\_base.html} non è necessario riscrivere tutti i componenti html, ma solamente quelli diversi; dato che i tag head sono uguali per ogni pagina, nella pagina figlio, cambia solamente il blocco \textbf{body}. La pagina figlio ha quindi la seguente implementazione:
+
+\begin{Verbatim}[commandchars=\\\[\]]
+______________________________________________________
+\verbatimbold[{% extends '_base.html' %}]
+
+\verbatimbold[{% block body %}]
+    <h1>Pagina figlio</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua
+    </p>
+\verbatimbold[{% endblock body %}]
+______________________________________________________
+\end{Verbatim}
+Grazie all'utilizzo dei blocchi è possibile quindi apportare modifiche al blocco \textit{head} nel file \textit{\_base.html} e vederle riflesse anche nella pagina \textit{post.html} senza dover modificare altro codice.
+In questo esempio sono stati utilizzati solamente due blocchi (head e body), mentre in cubo ne son presenti più di venti, che suddividono la pagina in piccole sezioni. La tecnica dell'ereditarietà dei template è estremamente utile ed utilizzata per la personalizzazione dei contenuti dei template figlio (come \textit{post.html}), ma mantentendo la scrittura del codice pulita e senza riscrivere lo stesso pezzo di codice in parti diverse del progetto.
+
+\subsubsection{Personalizzazione per cliente}
+Può capitare che lo stesso template soddisfi le esigenze di un cliente, ma non quelle di un altro, in questo caso django permette sovrascrittura dei file template in modo da poterlo strutturare diversamente senza sovrascrivere il file originale. Per comprendere al meglio questa parte è necessario definire come viene importato Cubo dentro ad ogni applicazione web.
+Cubo è una libreria e viene installata come fosse un normalissimo pacchetto python. Per renderlo effettivamente parte del sito è necessario aggiungere le applicazioni Cubo che si desiderano nelle INSTALLED\_APPS del sito creato. Per esempio per un nuovo sito dal nome \textit{shop.unimore.it} si vuole utilizzare le applicazioni catalogo, e-commerce e carrello, per permettere al proprietario del sito di poter vendere i propri prodotti sul sito. Nella variable INSTALLED\_APPS si vanno ad aggiungere il nome delle applicazioni precedute dal nome del pacchetto (in questo caso Cubo) nel seguente modo:
+\begin{Verbatim}
+INSTALLED_APPS += [
+    "cubo.catalogue",
+    "cubo.shop",
+    "cubo.cart",
+]
+\end{Verbatim}
+Una volta aggiunte le applicazioni desiderate alle INSTALLED\_APPS, queste diventano attive e funzionanti. Non è possibile modificare i modelli e le viste di Cubo, è però possibile sovrascrivere il template ricreando il path corretto. La sovrascrittura permette quindi di modificare la struttura del template per i clienti con esigenze speciali senza dover modificare i file originali in Cubo.
+
+È possibile che la sola sovrascrittura non sia abbastanza per soddisfare tutte le esigenze, vengono quindi creati i \textit{tempaltetags}. I templatetags sono dei file python che vengono invocati dal template come fossero delle funzioni e possono interagire con i modelli e con il database come fossero delle Viste. Questo è fondamentale quando i dati che vengono forniti dalla Vista non sono adatti al "nuovo" template.
+I tempaltetags vengono spesso utilizzati anche in Cubo quando più template necessitano dell'utilizzo delle stesse funzioni.
+
+\subsubsection{Applicazioni ad-hoc}
+...
+
+
+
 \subsection{Workflow}
 Il work-flow segue il paradigma MVT (Model-View-Template) precedentemente discusso.
 
