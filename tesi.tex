@@ -9,6 +9,15 @@
 %\addtolength{\textheight}{1in}
 \renewcommand{\contentsname}{Indice}
 \renewcommand\refname{Bibliografia}
+\renewcommand{\figurename}{Figura}
+
+
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\graphicspath{{img/}}
+
 
 \title{Tesi}
 \author{Marco Moroni }
@@ -108,24 +117,8 @@ L'azienda, in particolare, ha scelto di utilizzare i seguenti software per lo sv
 
     \item \textbf{Vue.js}, è un framework JavaScript open-source in configurazione "Model View Viewmodel" per la creazione di interfacce utente e single-page applications. È stato creato da Evan You ed è gestito da lui stesso e i membri attivi del core team, provenienti da varie società come Netlify e Netguru;
 
-    \item \textbf{Visual Studio Code} è un editor di codice sorgente sviluppato da Microsoft per Windows, Linux e macOS. Include il supporto per debugging, un controllo per Git integrato, Syntax highlighting, IntelliSense, Snippet e refactoring del codice. Visual Studio Code è basato su Electron, un framework con cui è possibile sviluppare applicazioni Node.js;
-
     \item\textbf{PostgreSQL} è un completo DBMS (DataBase Management System) ad oggetti rilasciato con licenza libera. Spesso abbreviato come "Postgres", sebbene questo sia un vecchio nome dello stesso progetto. É una reale alternativa sia rispetto ad altri prodotti liberi come MySQL, Firebird SQL e MaxDB, sia a quelli a codice chiuso come Oracle, IBM Informix o DB2, ed offre caratteristiche uniche nel suo genere che lo pongono per alcuni aspetti all'avanguardia nel settore delle basi di dati, ad esempio postgres permette agli utenti di definire nuovi tipi basati sui normali tipi di dato SQLe PostgreSQL, inoltre, permette l'ereditarietà dei tipi;
-
-    \item \textbf{Tower} è un client Git molto potente che permette agli sviluppatori di accedere ai propri repositories tramite interfaccia utente. È possibile utilizzare qualsiasi comando proveniente dal protocollo Git. È un’applicazione estremamente utile e fondamentale quando si lavora in team su uno stesso progetto e si è costretti a ricercare errori o modifiche fatte nei precedenti commit.
 \end{itemize}
-\clearpage
-\section{Sviluppo}
-In questo capitolo si vanno a descrivere e approfondire tutti i passaggi dello sviluppo di CUBO.
-
-\subsection{Browser}
-
-Agli esordi di internet, i siti web erano pagine molto semplici, statici e con pochi componenti. Nel 2021, sempre più spesso, si parla di vere e proprie applicazioni web. L’informatica è la scienza, che più di tutte, si sviluppa velocemente ed in questi decenni sono stati inventati e sviluppati modi diversi, migliori e più efficienti per sviluppare siti web.
-
-Avere siti web sempre più impegnativi e con sempre più funzionalità significa avere anche dei ‘motori’ sempre più performanti e adeguati al contenuto. Questi ‘motori’ sono i browser. Con il termine browser s’intende un software, proprio come qualsiasi altro programma installato sul computer, pensato in maniera specifica per poter recuperare, presentare e navigare determinate risorse su internet; ad esempio testi, video, canzoni, immagini e svariate altre tipologie di contenuti che vengono identificati attraverso un apposito URL (Uniform Resource Locator), ovvero un nome che identifica univocamente una risorsa all’interno della rete.
-Esistono svariati tipi di browser, chi più performante, chi più veloce, chi più rispettoso della privacy dell’utente, chi ti offre la possibilità di navigare tramite rete Tor e chi permette perfino di gestire i portafogli di cryptovalute dalla dashboard del browser.
-
-Per lo sviluppo si utilizza Google Chrome, il browser più diffuso con circa il 64\% di a livello mondiale.
 
 \subsection{Conoscenze preliminari}
 Per sviluppare un sito web è necessario conoscere i tre linguaggi che un browser è in grado di interpretare: html, css, e javascript.
@@ -140,6 +133,10 @@ Oltre ad essi, che sono a supporto degli sviluppatori, hanno preso piede anche i
 Un esempio di un cms diffuso è Wordpress, che copre circa il 40\% dei siti web attualmente in circolazione, che si stima siano in totale 1,7 bilioni.
 Grazie a Wordpress chiunque può creare il proprio spazio su internet e rendersi visibile a tutti.
 L’obiettivo, come già ribadito, di questo tirocinio è creare un cms proprietario, chiamato CUBO, che racchiuda le funzionalità base per rendere indipendenti i clienti, ma che allo stesso tempo sia totalmente personalizzabile dall’agenzia in base alle esigenze di questi ultimi.
+\clearpage
+\section{Sviluppo}
+In questo capitolo si vanno a descrivere e approfondire tutti i passaggi dello sviluppo di CUBO.
+\subsection{Introduzione a Django}
 
 Lo sviluppo è partito dallo studio di Django, il framework su cui è basato Cubo.
 Django, libreria scritta nel linguaggio Python, racchiude al suo interno un set di classi, e metodi che permettono di velocizzare lo sviluppo iniziale di un progetto web. Django è basato sul paradigma model-view-template:
@@ -172,6 +169,40 @@ Le caratteristiche principali di cui CUBO deve godere sono:
 Essendoci una gran mole di applicazioni, si è pensato di suddividere il progetto in classi e sottoclassi, in modo da seguire la filosofia del “code reuse” (riuso del codice), e non dover quindi riscrivere lo stesso script in più punti diversi del progetto.
 Con riuso di codice si intende la pratica, estremamente comune nella programmazione, di richiamare o invocare parti di codice precedentemente già scritte ogni qualvolta risulta necessario, senza doverle riscrivere, e nel caso in futuro si dovessero apportare modifiche, applicarle una volta sola.
 
+\subsection{Struttura}
+In questa sezione si illustra la struttura completa e finita di Cubo, introducendo le differenti parti che si descrivono nei successivi capitoli.
+\begin{figure}[H]
+    \includegraphics[width=1\linewidth]{cubo_scheme.png}
+    \caption{Schema di Cubo}
+\end{figure}
+
+\subsubsection{DB, Django, Vue.js --- MVT}
+Come anticipato nei capitoli precedenti Cubo è basato su Django, che rende possibile la creazione e comunicazioni tra le tre parti principali: Modello, Vista e Template.
+
+Il \textbf{modello} comunica direttamente con il server di database, che tramite il dbms postgreSQL crea le tabelle, relazioni e vincoli definiti nei modelli.
+
+La \textbf{vista} è una funzione che viene invocata quando l’utente apre una qualsiasi pagina sul sito web, gesisce la richiesta del client, spesso interrogando il database, e  restituisce tutte i dati necessari per strutturare correttamente ed in modo completo la pagina web.
+
+La funzione dei \textbf{template} è quella di trasformare le informazioni logiche in elementi di markup html.
+% Come si può notare dall’immagine xxx i dettagli del post (immagine, titolo, e sottotitolo) non sono hard-coded ma sono ricavate dalle variabili recuperate dalla vista.
+I template sono semplici file html, con una sintassi adattata per le variabili di Django; è inoltre possibile eseguire funzioni direttamente all’interno del codice in caso di necessità.
+
+Quando viene effettuata una richiesta, il server di django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework basati, django effettua un server-side rendering: il server effettua tutte le operazioni necessarie, e poi restituisce al browser client solamente il codice html.
+Altri framework, come React o Vue.js che son basati su javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito web.
+
+
+Entrambe le opzioni sono valide, la scelta dipende dal contesto:
+\begin{itemize}
+    \item \textbf{server-side} rendering: gode di migliori performance, di sicurezza dei dati, ma le pagine web rimangono statiche;
+    \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
+\end{itemize}
+Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura sicura attraverso l’isolamento dei dati tramite server-side e dinamica tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template django html.
+
+\subsubsection{Modelli astratti}
+Con modelli astratti si intende la creazione di classi standard, estendibili ed adattabili a molteplici situazioni. Per esempio, la classe astratta \textit{StandardPageMetaModel} è utilizzata come classe padre per ogni modello sul database, dato che racchiude al suo interno attributi di base comuni ad ogni modello, come titolo, sottotitolo, data di creazione/modifica, slug, immagine.
+
+Oltre ai modelli astratti dentro a Cubo sono state implementate molteplici classi astratte, che spaziano dai form alle tabelle alle viste, che attraverso il principio dell'ereditarietà
+
 \subsection{Workflow}
 Il work-flow segue il paradigma MVT (Model-View-Template) precedentemente discusso.
 Per questa sezione e le successive si prende come esempio il modello \textit{Post} presente nell’applicazione \textit{Blog}.
@@ -185,24 +216,36 @@ Ogni volta che si effettuano modifiche ai file dei modelli, è necessario genera
                   python manage.py makemigrations
                   python manage.py migrate
 \end{verbatim}
-La vista è una funzione che viene invocata quando l’utente apre una qualsiasi pagina sul sito web (anche la homepage), e restituisce tutte le informazioni necessarie per strutturare la pagina.
-Per esempio, da come si può dedurre dall’immagine xx, si tratta della la funzione per recuperare i post appartenenti ad una certa categoria e creare una lista da 12 post, che verrà poi passata al template.
 
-Lo scopo dei template è quello di trasformare le informazioni logiche in elementi di markup html. Come si può notare dall’immagine xxx i dettagli del post (immagine, titolo, e sottotitolo) non sono hard-coded ma sono ricavate dalle variabili recuperate dalla vista.
-I template sono semplici file html, con una sintassi adattata per le variabili di Django; è inoltre possibile eseguire funzioni direttamente all’interno del codice in caso di necessità.
 
-Quando viene effettuata una richiesta, il server di django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework basati, django effettua un server-side rendering, cioè, come si anticipato poco fa, ad ogni richiesta, il server effettua tutte le operazioni necessarie, e poi restituisce al client solamente il codice html.
-Altri framework, come React o Vue che son basati su javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito web.
 
-Entrambe le opzioni sono valide, la scelta dipende dal contesto:
-\begin{itemize}
-    \item \textbf{server-side} rendering: gode di migliori performance, di sicurezza dei dati, ma le pagine web restano statiche;
-    \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
-\end{itemize}
-Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura sicura attraverso l’isolamento dei dati tramite server-side e dinamica tramite client-side. Per questo progetto la soluzione migliore è l’innesto di script Vue.js nei template html.
 
 \subsection{Pannello amministratore}
 La struttura del sito web parte dal pannello amministratore dove è possibile modificare tutta la configurazione del sito web e caricare i contenuti che si andranno poi a visualizzare.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
