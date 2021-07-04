@@ -46,22 +46,17 @@ La struttura, composta da uno staff di 10 esperti suddivisi nelle varie aree azi
 L’azienda si avvale di diversi servizi esterni di supporto: dall’hosting dei siti web, alle email, ai microservizi di supporto ai programmatori, che si stanno man mano diffondendo sempre di più nell’ambito dello sviluppo.
 Studio indaco è nata nel 2018 partendo da 2 soci fino ad arrivare a giugno 2021 ad avere 10 dipendenti.
 
-\subsection{Obiettivi ed esperienza aziendale}
+\subsection{Obiettivi ed attività aziendale}
 Lo scopo del tirocinio concordato con il tutor aziendale Marco Zolin, fondatore di Studio Indaco, è stato principalmente lo sviluppo del CMS proprietario dal nome CUBO, la base di ogni sito web creato dall’agenzia, nel  quale ho investito la maggior parte del tempo del tirocinio.
-Indispensabile per svolgere tale compito, è stata la familiarità con la programmazione ed i linguaggi specifici appresi nei corsi di “Fondamenti di Informatica 1 - Python” e “Algoritmi e linguaggi di programmazione”. Questi mi hanno aiutato nell’implementazione e la realizzazione di specifici software per il web.
-
-Nell’arco delle trecentosessanta ore svolte, ho avuto una stretta collaborazione con il web designer, e co-fondatore dell’azienda, Marco Di Padova, figura addetta alla selezione e cura del layout grafico di ogni progetto, adattandolo perfettamente alle esigenze specifiche e particolari di ogni cliente.
-Durante il mio percorso non sono mancate relazioni fondamentali con il reparto commerciale, nel nome di Enrico che con diplomazia riescono a comunicare coi clienti riportando allo studio le loro le eventuali modifiche da apportare al progetto.
-
+Il ruolo a me assegnato è di full-stack developer, cioè sviluppatore completo. Con full-stack developer s'intende un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend; non significa essere un esperto in ogni singolo linguaggio o tecnologia esistente. Essere un full stack developer significa essere flessibile tra i diversi aspetti di un’applicazione, conoscendo quindi le tecnologie principali della programmazione frontend (HTML, CSS e JavaScript) e almeno un linguaggio backend, riuscendo a gestire le chiamate lato server e lato client, e le integrazioni con il database.
+Oltre alle doti di programmazione un full-stack developer deve avere le competenze di configurare un server per l'hosting ed il deploy di un'applicazione web.
+La figura che emerge è quella di un programmatore in grado di gestire autonomamente client, server e database, e di rendere funzionante e sicura l'applicazione sviluppata.
 \clearpage
 \section{Aspetti teorici}
-In questo capitolo mi voglio focalizzare sugli aspetti teorici e strumenti necessari per poter realizzare l’obiettivo del tirocinio. Poiché i compiti principali a me assegnati riguardano la creazione e la gestione di siti internet, di seguito ho descritto come un sito web deve essere organizzato affinché sia accessibile e come l’usabilità del web sia fondamentale per venire incontro ai bisogni degli utenti finali.
+Questo capitolo si focalizza sugli aspetti teorici e strumenti necessari utilizzati per poter realizzare l’obiettivo del tirocinio. Poiché i compiti principali assegnati riguardano la creazione e la gestione di siti internet, di seguito viene descritto come un sito web debba essere organizzato affinché sia accessibile e come l’usabilità del web sia fondamentale per venire incontro ai bisogni degli utenti finali.
 
 \subsection{Linguaggi utilizzati}
 In questa sezione si esaminano i linguaggi utilizzati durante lo sviluppo, i costrutti di programmazione e gli ausili che sono stati utilizzati.
-
-Durante il periodo universitario ho appreso e approfondito il linguaggio Python, soprattutto nel corso di ‘Informatica 1’ tenuto dal Professor Marco Mamei. Hanno inoltre contribuito al mio miglioramento le ripetizioni private impartite agli studenti delle scuole superiori, che mi hanno dato modo di mettere alla prova le conoscenze apprese, consolidarle, ed approfondire nei dettagli le caratteristiche del linguaggio.
-Inoltre, sviluppando software con questo linguaggio in azienda, son riuscito ad imparare nuove tecniche di ottimizzazione del codice e di scrittura ordinata.
 
 Nel tempo libero ho intrapreso attività progettuali, da piccoli esperimenti personali fini a se stessi tramite l’ausilio di raspberry pi ed arduino, alla realizzazione e vendita di applicazioni web complesse. Questi lavori mi hanno dato l’occasione di fare esperienza con nuovi strumenti e tecniche di sviluppo con una base comune: Javascript.
 Javascript è un linguaggio di scripting lato client utilizzato comunemente per rendere interattive le pagine web; è un linguaggio di programmazione interpretato, ciò significa che quando si esegue lo script, viene letta, tradotta ed eseguita un’istruzione alla volta; a differenza dei linguaggi compilati (come c/c++, go, java) che prima di essere eseguiti vengoo appunto compliati, cioè tradotti in linguaggio macchina  creando un file eseguibile. I linguaggi compilati vantano di performance superiori rispetto ai linguaggi interpretati, che hanno però solitamente una portabilità più alta e soprattutto l’immediatezza tra quello che viene scritto e l’esecuzione.
@@ -136,6 +131,8 @@ L’obiettivo, come già ribadito, di questo tirocinio è creare un cms propriet
 \clearpage
 \section{Sviluppo}
 In questo capitolo si vanno a descrivere e approfondire tutti i passaggi dello sviluppo di CUBO.
+Per questo capitolo si prende come esempio il modello \textit{Post} presente nell’applicazione \textit{Blog}, che va a descrivere gli attributi di ogni post (articolo) che si può trovare nel blog.
+
 \subsection{Introduzione a Django}
 
 Lo sviluppo è partito dallo studio di Django, il framework su cui è basato Cubo.
@@ -148,9 +145,7 @@ Django, libreria scritta nel linguaggio Python, racchiude al suo interno un set 
 
 Questa suddivisione consente a diverse figure professionali, di lavorare in modo indipendente alle parti dell’applicazione di propria competenza: gli sviluppatori si dedicheranno al modello dei dati e alle viste, i web designer ai template.
 
-Per quanto riguarda le richieste di dati al database, django effettua una mappatura automatica tra i modelli e le tabelle logiche sul database, evitando così ai programmatori di effettuare le classiche richieste in linguaggio SQL, ma permettendo di utilizzare oggetti, rendendo la scrittura del codice più ordinata e pulita.
-
-Questa tecnica, chiamata \textbf{ORM} (Object Relational Mapping), rende il codice più sicuro dato che impedisce, di natura, qualsiasi attacco di SQL injection: una tecnica di iniezione di codice, usata per infettare applicazioni che gestiscono dati attraverso database relazionali sfruttando il linguaggio SQL. Il mancato controllo dell'input dell'utente permette di inserire artificiosamente delle stringhe di codice SQL che saranno eseguite dall'applicazione server: grazie a questo meccanismo è possibile far eseguire comandi SQL anche molto complessi, dall'alterazione dei dati, alla creazione di nuovi utenti, al download completo dei contenuti nel database.
+Per quanto riguarda le richieste di dati al database, django effettua una mappatura automatica tra i modelli e le tabelle logiche sul database (\textbf{ORM} -- Object Relational Mapping), evitando così ai programmatori di effettuare le classiche richieste in linguaggio SQL, ma permettendo di utilizzare gli oggetti, rendendo la scrittura del codice più ordinata e pulita. Inoltre la tecnica \textbf{ORM}, rende il codice più sicuro dato che impedisce, di natura, qualsiasi attacco di SQL injection: una tecnica di iniezione di codice, usata per infettare applicazioni che gestiscono dati attraverso database relazionali sfruttando il linguaggio SQL. Il mancato controllo dell'input dell'utente permette di inserire artificiosamente delle stringhe di codice SQL che saranno eseguite dall'applicazione server: grazie a questo meccanismo è possibile far eseguire comandi SQL anche molto complessi, dall'alterazione dei dati, alla creazione di nuovi utenti, al download completo dei contenuti nel database.
 
 \subsection{Ideazione}
 Per la creazione del gestore di contenuti ci si è prima concentrati sull’ideazione e sulle caratteristiche principali del cms.
@@ -168,6 +163,8 @@ Le caratteristiche principali di cui CUBO deve godere sono:
 \end{itemize}
 Essendoci una gran mole di applicazioni, si è pensato di suddividere il progetto in classi e sottoclassi, in modo da seguire la filosofia del “code reuse” (riuso del codice), e non dover quindi riscrivere lo stesso script in più punti diversi del progetto.
 Con riuso di codice si intende la pratica, estremamente comune nella programmazione, di richiamare o invocare parti di codice precedentemente già scritte ogni qualvolta risulta necessario, senza doverle riscrivere, e nel caso in futuro si dovessero apportare modifiche, applicarle una volta sola.
+
+\clearpage
 
 \subsection{Struttura}
 In questa sezione si illustra la struttura completa e finita di Cubo, introducendo le differenti parti che si descrivono nei successivi capitoli.
@@ -199,13 +196,78 @@ Entrambe le opzioni sono valide, la scelta dipende dal contesto:
 Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura sicura attraverso l’isolamento dei dati tramite server-side e dinamica tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template django html.
 
 \subsubsection{Modelli astratti}
-Con modelli astratti si intende la creazione di classi standard, estendibili ed adattabili a molteplici situazioni. Per esempio, la classe astratta \textit{StandardPageMetaModel} è utilizzata come classe padre per ogni modello sul database, dato che racchiude al suo interno attributi di base comuni ad ogni modello, come titolo, sottotitolo, data di creazione/modifica, slug, immagine.
+Con modelli astratti si intende la creazione di classi standard (o estensione di classi Django), estendibili ed adattabili a molteplici situazioni. Per esempio, la classe astratta \textit{StandardPageMetaModel} è utilizzata come classe padre per ogni modello sul database, dato che racchiude al suo interno attributi di base comuni ad ogni modello, come titolo, sottotitolo, data di creazione/modifica, slug, immagine.
 
-Oltre ai modelli astratti dentro a Cubo sono state implementate molteplici classi astratte, che spaziano dai form alle tabelle alle viste, che attraverso il principio dell'ereditarietà
+Oltre ai modelli astratti dentro a Cubo sono state implementate molteplici classi astratte, che spaziano dai form alle tabelle alle viste, che attraverso il principio dell'ereditarietà si riesce a riciclare le stesse righe di codice per diversi modelli e applicazioni. Per esempio la classe \textit{BaseCreate} è la classe padre per ogni vista comprensiva di un form (form-view) ed estende tre classi di django \textit{StaffuserRequiredMixin}, \textit{SuccessMessageMixin} e \textit{CreateView}, che permettono la creazione di una form-view ed effettuare i controlli sui permessi di amministratore e la validazione del form.
+\begin{verbatim}
+    class BaseCreate(StaffuserRequiredMixin,
+                     SuccessMessageMixin, CreateView):
+\end{verbatim}
 
+Oltre a \textit{BaseCreate}, vengono riportate per completezza anche le altre classi \textit{Base} che si riferiscono ai form-view a livello amministratore, che attraverso il nome si autodescrivono.
+
+\begin{verbatim}
+    BaseCreate, BaseUpdate, BaseDelete, BaseIndex,
+    BaseIsFeatured, BaseIsReady, BaseRank.
+\end{verbatim}
+
+\textit{BaseCreate} (e tutte le altre definites) è una classe astratta e per renderla concreta è necessario associarla ad un caso reale: per la creazione di una form-view per il modello \textit{Post} presente nell'applicazione \textit{Blog}, è necessario estendere la classe \textit{BaseCreate} e sovrascrivere gli attributi specifici della classe nel caso d'uso (modello, form, template e messaggio di corretta crezione). Nell'esempio riportato sotto si definisce la creazione di una classe per la creazione di un'istanza della classe \textit{Post}:
+\begin{verbatim}
+    class PostCreate(BaseCreate):
+        model = Post
+        form_class = PostForm
+        template_name = "blog/admin/post_form.html"
+        success_message = "%(title_it)s salvato con successo."
+\end{verbatim}
+
+\subsubsection{Applicazioni Cubo}
+Le applicazioni sono il cuore di Cubo. Contengono al loro interno le implementazioni reali delle classi astratte di Cubo discusse nella sezione precedente. Le applicazioni sono delle sotto-cartelle di cubo che racchiudono al loro interno modelli, viste, template e url specifici per l'applicazione, oltre ad ogni file necessario per il corretto funzionamento di essa. Per la creazione di un modello specifico è necessario estendere la classe \textit{StandardPageMetaModel} e dopodichè definire tutti gli attributi specifici per quel modello dell'applicazione. Per il modello \textbf{Post}, oltre agli attributi standard, si definiscono
+\begin{itemize}
+    \item la categoria di un post;
+    \item blocchi personalizzati attravers il campo JSONField;
+    \item gli articoli correlati;
+    \item i tag relativi;
+    \item l'ordinamento per il fetch automatico dal database e le etichette del modello.
+\end{itemize}
+
+
+\begin{verbatim}
+    class Post(StandardPageMetaModel):
+        category = models.ForeignKey(
+            "PostCategory",
+            on_delete=models.CASCADE,
+            blank=True,
+            null=True,
+            db_index=True,
+            verbose_name="categoria",
+        )
+        content = JSONField(default=list, blank=True)
+        related_posts = models.ManyToManyField("self",
+                        blank=True, verbose_name="articoli
+                        correlati")
+        tags = models.ManyToManyField("PostTag", blank=True)
+
+        class Meta:
+            ordering = ["-publish_date", "rank"]
+            verbose_name = "articolo"
+            verbose_name_plural = "articoli"
+\end{verbatim}
+Per ogni applicazione, oltre ad estendere i modelli specifici attraverso il padre \textit{StandardPageMetaModel}, si estendono anche i form a livello utente attraverso la classe \textit{BaseModelForm} che racchiude tutti gli attributi della \textit{StandardPageMetaModel} e una funzione di inizializzazione di base.
+
+\begin{verbatim}
+    class PostForm(BaseModelForm):
+        class Meta:
+            model = Post
+            fields = BaseModelForm.Meta.fields +
+                        ["category", "related_posts",
+                         "content", "tags"]
+            widgets = {"related_posts": Select2MultipleWidget,
+                       "tags": Select2MultipleWidget}
+\end{verbatim}
+
+La classe padre di ogni form a livello di applicazione è \textit{BaseModelForm} che racchi
 \subsection{Workflow}
 Il work-flow segue il paradigma MVT (Model-View-Template) precedentemente discusso.
-Per questa sezione e le successive si prende come esempio il modello \textit{Post} presente nell’applicazione \textit{Blog}.
 
 Ogni modello del CUBO estende la classe \textit{StandardPageMetaModel} che racchiude al suo interno gli attributi di base comuni ad ogni sotto modello, (come titolo, sottotitolo, data di creazione, slug, immagine…).
 Il modello \textit{Post} comprende, oltre agli attributi dello \textit{StandardPageMetaModel}, anche una categoria, il contenuto del post, i tag e i post correlati.
