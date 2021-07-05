@@ -265,7 +265,8 @@ Per ogni applicazione, oltre a definire i modelli estendendo il padre \textit{St
             fields = BaseModelForm.Meta.fields +
                         ["category", "related_posts",
                          "content", "tags"]
-            widgets = {"related_posts": Select2MultipleWidget,
+            widgets = {"related_posts":
+                         Select2MultipleWidget,
                        "tags": Select2MultipleWidget}
 \end{verbatim}
 
@@ -312,17 +313,18 @@ ______________________________________________________
 ______________________________________________________
 \end{Verbatim}
 Grazie all'utilizzo dei blocchi è possibile quindi apportare modifiche al blocco \textit{head} nel file \textit{\_base.html} e vederle riflesse anche nella pagina \textit{post.html} senza dover modificare altro codice.
-In questo esempio sono stati utilizzati solamente due blocchi (head e body), mentre in cubo ne son presenti più di venti, che suddividono la pagina in piccole sezioni. La tecnica dell'ereditarietà dei template è estremamente utile ed utilizzata per la personalizzazione dei contenuti dei template figlio (come \textit{post.html}), ma mantentendo la scrittura del codice pulita e senza riscrivere lo stesso pezzo di codice in parti diverse del progetto.
+In questo esempio sono stati utilizzati solamente due blocchi (head e body), mentre in cubo ne son presenti \textbf{più di trenta}, che suddividono la pagina in piccole sezioni. La tecnica dell'ereditarietà dei template è estremamente utile ed utilizzata per la personalizzazione dei contenuti dei template figlio (come \textit{post.html}), ma mantentendo la scrittura del codice pulita e senza riscrivere lo stesso pezzo di codice in parti diverse del progetto.
 
 \subsubsection{Personalizzazione per cliente}
 Può capitare che lo stesso template soddisfi le esigenze di un cliente, ma non quelle di un altro, in questo caso django permette sovrascrittura dei file template in modo da poterlo strutturare diversamente senza sovrascrivere il file originale. Per comprendere al meglio questa parte è necessario definire come viene importato Cubo dentro ad ogni applicazione web.
 Cubo è una libreria e viene installata come fosse un normalissimo pacchetto python. Per renderlo effettivamente parte del sito è necessario aggiungere le applicazioni Cubo che si desiderano nelle INSTALLED\_APPS del sito creato. Per esempio per un nuovo sito dal nome \textit{shop.unimore.it} si vuole utilizzare le applicazioni catalogo, e-commerce e carrello, per permettere al proprietario del sito di poter vendere i propri prodotti sul sito. Nella variable INSTALLED\_APPS si vanno ad aggiungere il nome delle applicazioni precedute dal nome del pacchetto (in questo caso Cubo) nel seguente modo:
 \begin{Verbatim}
-INSTALLED_APPS += [
-    "cubo.catalogue",
-    "cubo.shop",
-    "cubo.cart",
-]
+                INSTALLED_APPS = [
+                    *INSTALLED_APPS,
+                    "cubo.catalogue",
+                    "cubo.shop",
+                    "cubo.cart",
+                ]
 \end{Verbatim}
 Una volta aggiunte le applicazioni desiderate alle INSTALLED\_APPS, queste diventano attive e funzionanti. Non è possibile modificare i modelli e le viste di Cubo, è però possibile sovrascrivere il template ricreando il path corretto. La sovrascrittura permette quindi di modificare la struttura del template per i clienti con esigenze speciali senza dover modificare i file originali in Cubo.
 
@@ -330,28 +332,48 @@ Una volta aggiunte le applicazioni desiderate alle INSTALLED\_APPS, queste diven
 I tempaltetags vengono spesso utilizzati anche in Cubo quando più template necessitano dell'utilizzo delle stesse funzioni.
 
 \subsubsection{Applicazioni ad-hoc}
-...
+Cubo è un cms completo che copre l'80\% circa delle richieste dei clienti, ma per il 20\% rimanente è necessario intervenire direttamente sul singolo sito web creando una o più applicazioni ad-hoc. Queste applicazioni custom vengono create a partire dai fondamenti di cubo discussi nelle sezioni precendenti (modelli e classi astratte) per avere una base di partenza comune e poter fare affidamento sulle strutture stabili.
 
 
+\textbf{FACCIO UN ESEMPIO DI SITO CON APP CUSTOM CHE HO FATTO?}
 
 \subsection{Workflow}
 Il work-flow segue il paradigma MVT (Model-View-Template) precedentemente discusso.
 
 Ogni modello del CUBO estende la classe \textit{StandardPageMetaModel} che racchiude al suo interno gli attributi di base comuni ad ogni sotto modello, (come titolo, sottotitolo, data di creazione, slug, immagine…).
-Il modello \textit{Post} comprende, oltre agli attributi dello \textit{StandardPageMetaModel}, anche una categoria, il contenuto del post, i tag e i post correlati.
+Il modello \textit{Post} comprende, oltre agli attributi dello \textit{StandardPageMetaModel}, anche una categoria, il contenuto del post, i tag e i post correlati (si veda sezione 3.3.3).
 Una volta creato il modello è necessario creare i file di migrazione per il database.
-Le migrazioni sono il modo tramite il quale i cambiamenti che vengono effettuati nei file dei modelli, vengono effettivamente riflessi anche nelle tabelle 2sul database.
-Ogni volta che si effettuano modifiche ai file dei modelli, è necessario generare anche i file di migrazione. Django include i comandi per autogenerare i file di migrazioni e per riflettere le modifiche sul database per rendere effettivi i  cambiamenti:
+Le migrazioni sono il mezzo attraverso il quale i cambiamenti che vengono effettuati nei file dei modelli, vengono effettivamente riflessi anche nelle tabelle sul database.
+Ogni volta effettuate le modifiche ai file dei modelli, è necessario generare anche i file di migrazione. Django include i comandi per autogenerare i file di migrazioni e per riflettere le modifiche sul database per rendere effettivi i  cambiamenti:
 \begin{verbatim}
-                  python manage.py makemigrations
-                  python manage.py migrate
+            python manage.py makemigrations
+            python manage.py migrate
 \end{verbatim}
 
-
-
-
 \subsection{Pannello amministratore}
-La struttura del sito web parte dal pannello amministratore dove è possibile modificare tutta la configurazione del sito web e caricare i contenuti che si andranno poi a visualizzare.2
+Una volta sviulppato il sito web, è necessario configurare gli opportuni parametri. Tutta l'impostazione del sito web parte dal pannello amministratore dove è possibile modificare le configurazioni del sito e delle varie applicazioni e caricare i contenuti che si andranno poi a visualizzare a livello utente.
+\begin{figure}[H]
+    \includegraphics[width=1\linewidth]{admin.png}
+    \caption{Schema di Cubo}
+\end{figure}
+
+Ogni applicazione dispone delle proprie modalità ed impostazioni di caricamento contenuti, in base alle esigenze ed alle necessità del caso d'utilizzo.
+
+\subsubsection{Blocchi Cubo}
+Come ogni cms che si rispetti, anche Cubo mette a disposizione dei "blocchi" prefabbricati per la costruzione di una pagina. I blocchi sono una libreria di elementi predefiniti che permettono di aggiungere contenuti, nelle varie pagine del sito, che l'amministratore crea dal pannello admin.
+
+Esistono blocchi per gestire i seguenti tipi di componenti:
+\begin{itemize}
+    \item testo;
+    \item immagini;
+    \item galleria;
+    \item documenti;
+    \item video;
+    \item citazioni;
+    \item prodotto.
+\end{itemize}
+Ogni blocco è componibile con un altro in modo da lasciare libertà \break all'amministratore di rappresentare la pagina nel modo che ritiene migliore
+
 
 
 
