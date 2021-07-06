@@ -72,6 +72,11 @@ In un’applicazione web, è molto consigliata la coesistenza di entrambi, dato 
 Tutti i framework lato client basati su Javascript, come React, Vue, o Angular, sono quindi categorizzati come front-end, mentre i framework lato server, sempre basati su Javascript, come Node o Deno, sono categorizzati come back-end. Per fare comunicare i due punti si utilizzano le API REST (o RESTful). Un'API REST è un'interfaccia di programmazione delle applicazioni conforme ai vincoli dello stile di architettura REST, che consente inoltre l'interazione con servizi web RESTful.
 
 \subsection{API}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\linewidth]{api.png}
+    \caption{Api}
+\end{figure}
 
 Le API (Application Programming Interface, ovvero Interfaccia di programmazione delle applicazioni) sono set di definizioni e protocolli con i quali vengono realizzati e integrati software applicativi. Possono essere considerate come un contratto tra un fornitore di informazioni e l'utente destinatario di tali dati: l'API stabilisce il contenuto richiesto dal consumatore (la chiamata) e il contenuto richiesto dal produttore (la risposta). Ne è un esempio la struttura di un'API di un servizio meteorologico, in cui l'utente invia una richiesta contenente un codice postale al quale il produttore fornisce una risposta in due parti, dove la prima indica la temperatura massima e la seconda la minima.
 \hfill \break \break
@@ -356,24 +361,23 @@ Una volta sviulppato il sito web, è necessario configurare gli opportuni parame
     \includegraphics[width=1\linewidth]{admin.png}
     \caption{Schema di Cubo}
 \end{figure}
-
-Ogni applicazione dispone delle proprie modalità ed impostazioni di caricamento contenuti, in base alle esigenze ed alle necessità del caso d'utilizzo.
+Nelle configurazioni del sito web si vanno a settare i contatti, le mail, le informazioni legali, i link ai social, analytics e la privacy policy.
+Ogni applicazione dispone delle proprie modalità ed impostazioni di caricamento contenuti, in base alle esigenze ed alle necessità del caso d'utilizzo. Per esempio per l'applicaizone
 
 \subsubsection{Blocchi Cubo}
-Come ogni cms che si rispetti, anche Cubo mette a disposizione dei "blocchi" prefabbricati per la costruzione di una pagina. I blocchi sono una libreria di elementi predefiniti che permettono di aggiungere contenuti, nelle varie pagine del sito, che l'amministratore crea dal pannello admin.
-
+Come ogni cms che si rispetti, anche Cubo mette a disposizione dei "blocchi" prefabbricati per la costruzione di una pagina. I blocchi sono una libreria di elementi predefiniti che permettono di aggiungere contenuti dinamici, nelle varie pagine del sito, che l'amministratore crea dal pannello admin.
 Esistono blocchi per gestire i seguenti tipi di componenti:
 \begin{itemize}
-    \item testo;
-    \item immagini;
-    \item galleria;
-    \item documenti;
-    \item video;
-    \item citazioni;
-    \item prodotto.
+    \item \textbf{testo}: fornisce un campo dove è possibile inserire il testo personalizzando il carattere e formattazione;
+    \item \textbf{immagini}: permette di inserire una o più immagini;
+    \item \textbf{documenti}: permette di inserire documenti pdf;
+    \item \textbf{video}: incorpora un video di un'altra piattaforma;
+    \item \textbf{citazioni}: una particoare formattazione di testo ed immagine;
+    \item \textbf{prodotto}: permette di inserire un'anteprima di un prodotto (disponibile solo se l'applicazione "e-commerce" è installata).
 \end{itemize}
-Ogni blocco è componibile con un altro in modo da lasciare libertà \break all'amministratore di rappresentare la pagina nel modo che ritiene migliore
+Ogni blocco è componibile con un altro in modo da lasciare libertà \break all'amministratore di rappresentare la pagina nel modo che ritiene migliore scegliendo e combinando i blocchi a sua scelta. Per esempio è possibile scegliere di  inserire un blocco testo e di aggiungere un blocco immagine e decidere di posizionarli affiancati (testo ed immagine laterale) oppure utilizzare l'immagine come sfondo che avvolga il testo al suo interno.
 
+I blocchi permettono quindi di rimanere indipendenti dai clienti e dalle loro scelte di creazione dei contenuti, in modo da non incorrere in costanti modifiche/aggiunte/rimozioni di codice ma di lasciare ai clienti la responsabilità della creazione dei contenuti. Cubo è il mezzo tramite il quale i clienti creano i contenuti.
 
 
 
@@ -439,6 +443,12 @@ Docker considera i container come macchine virtuali modulari estremamente legger
 
 Come si può notare dall’immagine sottostante, a differenza delle classiche macchine virtuali, i container linux condividono lo stesso sistema operativo, e risultano quindi molto più performanti, motivo principale della loro diffusione.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\linewidth]{vm_docker.png}
+    \caption{Api}
+\end{figure}
+
 Studio Indaco ha deciso di optare per la terza categoria di deploy di un’applicazione web. In particolare vengono utilizzari due diversi servizi in base alle necessità di risorse e sviluppo del cliente: Heroku e fly.io.
 
 \subsection{Database}
@@ -448,6 +458,12 @@ Le informazioni contenute in una banca dati sono strutturate e collegate tra lor
 SQL ()……….
 
 Un DBMS è un software che si frappone fra l’utente ed i dati veri e propri. Grazie a questo strato intermedio l’utente e le applicazioni non accedono ai dati così come sono memorizzati effettivamente, cioè alla loro rappresentazione fisica, ma ne vedono solamente una rappresentazione logica. Ciò permette un elevato grado di indipendenza fra le applicazioni e la memorizzazione fisica dei dati. L’amministratore del database, se ne sente la necessità, può decidere di memorizzare i dati in maniera differente o anche di cambiare il DBMS senza che le applicazioni, e quindi gli utenti, ne risentano. La cosa importante è che non venga cambiata la rappresentazione logica di quei dati, che è la sola cosa che i loro utilizzatori conoscono. Questa rappresentazione logica viene chiamata ‘schema del database’ ed è la forma di rappresentazione dei dati più a basso livello a cui un utente del database può accedere.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\linewidth]{indipendenza_logica_fisica.png}
+    \caption{Indipendenza logica/fisica}
+\end{figure}
 
 Esistono svariati DBMS con caratteristiche e casi d’uso molto differenti, ma si possono classificare in due categorie principali: ‘SQL’ e ‘NO SQL’.
 
