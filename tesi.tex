@@ -28,7 +28,48 @@
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \begin{center}
+    {
+        \large
+        \textbf{Università  degli studi di Modena e Reggio Emilia} \\
+        \textbf{Dipartimento di Ingegneria Enzo Ferrari} \\
+        \vspace{\stretch{0.5}}
+        \hspace*{0cm} \hrulefill \hspace*{0cm} \\
+        \vspace{\stretch{0.5}}
+        \emph{Corso di Laurea in Ingegneria Informatica}
+
+        \vspace{\stretch{12}}
+
+        \huge{ Sviluppo di un Content Management System e Deployment su Infrastrutture Cloud }}\\
+        \vspace{3mm}
+
+        \vspace{\stretch{6}}
+    \end{center}
+    \vspace{40mm}
+    \par
+    \noindent
+    \begin{minipage}[t]{0.47\textwidth}
+        {\large{ Relatore\\
+        Prof.
+        Luca Ferretti}}\\
+        \\
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.47\textwidth}\raggedleft
+        {\large{ Candidato\\
+        Marco Moroni}}
+    \end{minipage}
+    \vspace{20mm}
+    \begin{center}
+        %\rule[0.1cm]{15.8cm}{0.1mm}
+        \hspace*{0cm} \hrulefill \hspace*{0cm} \\
+        {\large{
+        Anno Accademico 2020/21}}
+    \end{center}
+
+\end{titlepage}
+
 \clearpage
 
 \begin{abstract}
@@ -182,7 +223,6 @@ Con riuso di codice si intende la pratica, estremamente comune nella programmazi
 
 \clearpage
 
-
 \subsection{Struttura}
 In questa sezione si illustra la struttura completa e finita di Cubo, introducendo le differenti parti che si descrivono nei successivi capitoli.
 \begin{figure}[H]
@@ -195,7 +235,7 @@ Come anticipato nei capitoli precedenti Cubo è basato su Django, che rende poss
 
 Il \textbf{modello} comunica direttamente con il server di database, che tramite il dbms postgreSQL crea le tabelle, relazioni e vincoli definiti nei modelli.
 
-La \textbf{vista} è una funzione che viene invocata quando l’utente apre una qualsiasi pagina sul sito web, gesisce la richiesta del client, spesso interrogando il database, e  restituisce tutte i dati necessari per strutturare correttamente ed in modo completo la pagina web.
+La \textbf{vista} è una funzione che viene invocata quando l’utente apre una qualsiasi pagina sul sito web, e gestisce la richiesta del client, spesso interrogando il database, restituendo tutti i dati necessari per strutturare correttamente ed in modo completo la pagina web.
 
 La funzione dei \textbf{template} è quella di trasformare le informazioni logiche in elementi di markup html.
 % Come si può notare dall’immagine xxx i dettagli del post (immagine, titolo, e sottotitolo) non sono hard-coded ma sono ricavate dalle variabili recuperate dalla vista.
@@ -227,7 +267,7 @@ Oltre a \textit{BaseCreate}, vengono riportate per completezza anche le altre cl
     BaseIsFeatured, BaseIsReady, BaseRank.
 \end{verbatim}
 
-\textit{BaseCreate} (e tutte le altre appena elencate) è una classe astratta e per renderla concreta è necessario estenderla in un caso reale: per la creazione di una form-view per il modello \textit{Post} presente nell'applicazione \textit{Blog}, è necessario estendere la classe \textit{BaseCreate} e sovrascrivere gli attributi specifici della classe nel caso d'uso (modello, form, template e messaggio di corretta crezione). Nell'esempio riportato sotto si definisce la creazione di una classe per la creazione di un'istanza della classe \textit{Post}:
+\textit{BaseCreate} (e tutte le altre appena elencate) è una classe astratta e per renderla concreta è necessario estenderla ad un caso reale: per la creazione di una form-view per il modello \textit{Post} presente nell'applicazione \textit{Blog}, è necessario estendere la classe \textit{BaseCreate} e sovrascrivere gli attributi specifici della classe nel caso d'uso (modello, form, template e messaggio di corretta crezione). Nell'esempio riportato sotto si definisce la creazione di una classe per la creazione di un'istanza della classe \textit{Post}:
 \begin{verbatim}
     class PostCreate(BaseCreate):
         model = Post
@@ -238,7 +278,7 @@ Oltre a \textit{BaseCreate}, vengono riportate per completezza anche le altre cl
 \end{verbatim}
 
 \subsubsection{Applicazioni Cubo}
-Le applicazioni sono il cuore di Cubo. Contengono al loro interno le implementazioni reali delle classi astratte di Cubo discusse nella sezione precedente. Le applicazioni sono delle sotto-cartelle di cubo che racchiudono al loro interno modelli, viste, template e url specifici per l'applicazione, oltre ad ogni file necessario per il corretto funzionamento di essa. Per la creazione di un modello specifico è necessario estendere la classe \textit{StandardPageMetaModel} e dopodichè definire tutti gli attributi specifici per quel modello dell'applicazione. Per il modello \textbf{Post}, oltre agli attributi standard, si definiscono:
+Le applicazioni sono il cuore di Cubo. Contengono al loro interno le implementazioni reali delle classi astratte di Cubo discusse nella sezione precedente. Le applicazioni sono delle sotto-cartelle di Cubo che racchiudono al loro interno modelli, viste, template e url specifici per l'applicazione, oltre ad ogni file necessario per il corretto funzionamento di essa. Per la creazione di un modello specifico è necessario estendere la classe \textit{StandardPageMetaModel} e dopodichè specificare tutti gli attributi aggiuntivi per quel modello dell'applicazione. Per il modello \textbf{Post}, oltre agli attributi standard, si definiscono:
 \begin{itemize}
     \item la categoria di un post;
     \item blocchi personalizzati (vengono discussi successivamente);
@@ -283,7 +323,7 @@ Per ogni applicazione, oltre a definire i modelli estendendo il padre \textit{St
                        "tags": Select2MultipleWidget}
 \end{verbatim}
 
-Per quanto riguarda i template delle specifiche applicazioni, si applica, anche su di essi, il principio dell'ereditarietà (come nei modelli e nelle viste), perché ogni template estende il padre \textit{\_base.html}. Il template padre definisce la struttura base della pagina html comprensiva di tutte le sue parti. Questo template è suddiviso in blocchi per integrarsi meglio e senza ripetizione di codice una volta che viene esteso. Suddividere in blocchi un tempalte significa racchiudere suddividere la pagina porzioni di codice. Per esempio una pagina html è possibile inizialmente suddividerla in due blocchi: \textit{head} e \textit{body}. Il file \textit{\_base.html} prenderà quindi la struttura di:
+Per quanto riguarda i template delle specifiche applicazioni, si applica, anche su di essi, il principio dell'ereditarietà (come nei modelli e nelle viste), perché ogni template estende il padre \textit{\_base.html}. Il template padre definisce la struttura base della pagina html comprensiva di tutte le sue parti. Questo template è suddiviso in blocchi per integrarsi meglio e senza ripetizione di codice una volta che viene esteso. Suddividere in blocchi un tempalte significa suddividere la pagina porzioni di codice. Per esempio una pagina html è possibile inizialmente suddividerla in due blocchi: \textit{head} e \textit{body}. Il file \textit{\_base.html} prenderà quindi la struttura di:
 
 \begin{Verbatim}[commandchars=\\\[\]]
 _______________________________________________________
@@ -325,7 +365,7 @@ ______________________________________________________
 \verbatimbold[{% endblock body %}]
 ______________________________________________________
 \end{Verbatim}
-Grazie all'utilizzo dei blocchi è possibile quindi apportare modifiche al blocco \textit{head} nel file \textit{\_base.html} e vederle riflesse anche nella pagina \textit{post.html} senza dover modificare altro codice.
+Grazie all'utilizzo dei blocchi è possibile quindi apportare modifiche al blocco \textit{head} nel file \textit{\_base.html} e vederle riflesse anche nella pagina \textit{post.html} senza dover cambiare altri file.
 In questo esempio sono stati utilizzati solamente due blocchi (head e body), mentre in cubo ne son presenti \textbf{più di trenta}, che suddividono la pagina in piccole sezioni. La tecnica dell'ereditarietà dei template è estremamente utile ed utilizzata per la personalizzazione dei contenuti dei template figlio (come \textit{post.html}), ma mantentendo la scrittura del codice pulita e senza riscrivere lo stesso pezzo di codice in parti diverse del progetto.
 
 \subsubsection{Personalizzazione per cliente}
@@ -386,32 +426,6 @@ Ogni blocco è componibile con un altro in modo da lasciare libertà \break all'
 
 I blocchi permettono quindi di rimanere indipendenti dai clienti e dalle loro scelte di creazione dei contenuti, in modo da non incorrere in costanti modifiche/aggiunte/rimozioni di codice ma di lasciare ai clienti la responsabilità della creazione dei contenuti. Cubo è il mezzo tramite il quale i clienti creano i contenuti.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \clearpage
 \section{Scelte tecnologiche}
 In questa sezione si analizzano nel dettaglio le scelte tegnologiche che si adottano nel passagggio tra sviluppo e produzione di un'applicazione web.
@@ -455,7 +469,7 @@ Come si può notare dall’immagine sottostante, a differenza delle classiche ma
 \begin{figure}[H]
     \centering
     \includegraphics[width=.9\linewidth]{vm_docker.png}
-    \caption{Api}
+    \caption{Virtualizzazione vs container}
 \end{figure}
 
 Si è deciso di optare per la terza categoria di deploy di un’applicazione web. In particolare vengono utilizzari due diversi servizi in base alle necessità di risorse e sviluppo del cliente: Heroku e fly.io.
@@ -464,8 +478,6 @@ Si è deciso di optare per la terza categoria di deploy di un’applicazione web
 \subsection{Database}
 Con database (o base di dati) in informatica si indica un insieme di dati strutturati ovvero omogeneo per contenuti e formato, memorizzati in un computer. Questi rappresentano di fatto la versione digitale di un archivio dati o schedario.
 Le informazioni contenute in una banca dati sono strutturate e collegate tra loro secondo un particolare modello logico scelto dal progettista, tra relazionale, gerarchico, reticolare o a oggetti. Gli utenti si interfacciano con i database dati attraverso i linguaggi di interrogazione come ad esempio SQL e grazie a particolari applicazioni software dedicati, come il DBMS (database management system).
-
-SQL ()……….
 
 Un DBMS è un software che si frappone fra l’utente ed i dati veri e propri. Grazie a questo strato intermedio l’utente e le applicazioni non accedono ai dati così come sono memorizzati effettivamente, cioè alla loro rappresentazione fisica, ma ne vedono solamente una rappresentazione logica. Ciò permette un elevato grado di indipendenza fra le applicazioni e la memorizzazione fisica dei dati. L’amministratore del database, se ne sente la necessità, può decidere di memorizzare i dati in maniera differente o anche di cambiare il DBMS senza che le applicazioni, e quindi gli utenti, ne risentano. La cosa importante è che non venga cambiata la rappresentazione logica di quei dati, che è la sola cosa che i loro utilizzatori conoscono. Questa rappresentazione logica viene chiamata ‘schema del database’ ed è la forma di rappresentazione dei dati più a basso livello a cui un utente del database può accedere.
 
@@ -478,10 +490,37 @@ Un DBMS è un software che si frappone fra l’utente ed i dati veri e propri. G
 Esistono svariati DBMS con caratteristiche e casi d’uso molto differenti, ma si possono classificare in due categorie principali: ‘SQL’ e ‘NO SQL’.
 
 SQL (Structured Query Language) che, come suggerisce il nome, è un linguaggio volto all’interrogazione di dati altamente strutturati in tabelle prima definite.
-A differenza dei linguaggi NO SQL (Not Only SQL), che non hanno una struttura fissa, ma nascono dunque con l’idea di rappresentare dati eterogenei tra di loro e che non hanno sempre gli stessi attributi.
+Si differenziano invece i linguaggi NO SQL (Not Only SQL), che non hanno una struttura fissa, ma nascono dunque con l’idea di rappresentare dati eterogenei tra di loro e che non hanno sempre gli stessi attributi.
 
 I DBMS NO SQL sono in genere più veloci rispetto alla loro controparte, ma non sempre sono adatti ad ogni caso d’uso. È preferibile utilizzare un database SQL quando si andranno ad interrogare i DBMS con query complesse ed a lavorare con tipi di dati in relazione tra di loro; è invece preferibile l’utilizzo di un database NO SQL quando si necessita di più flessibilità nei dati e le query sono realtivamente semplici.
-Come con la dura scelta del server, lo sviluppatore/sistemista è chiamato a decidere anche dove posizionare il proprio database, se gestirlo autonomamente o acquistarne uno in cloud da un fornitore di servizi. Tra i più famosi fornitori di servizi troviamo Amazon AWS (dove Studio Indaco depone i propri database).
+Come con la dura scelta del server, lo sviluppatore/sistemista è chiamato a decidere anche dove posizionare il proprio database, se gestirlo autonomamente o acquistarne uno in cloud da un fornitore di servizi. Tra i più famosi fornitori di servizi troviamo Amazon AWS. Per Cubo e i siti web basati su Cubo si è deciso di esternalizzare il database su Amazon AWS.
 
+\clearpage
+
+\section*{Ringraziamenti}
+\addcontentsline{toc}{section}{Ringraziamenti}
+A conclusione di questo elaborato, desidero menzionare tutte le persone, senza le quali questo lavoro di tesi non esisterebbe nemmeno.
+Ringrazio il mio relatore Luca Ferretti, che in questi mesi di lavoro, ha saputo guidarmi, con suggerimenti pratici, nelle ricerche e nella stesura dell’elaborato.
+Ringrazio di cuore i miei genitori. Grazie per avermi sempre sostenuto e per avermi permesso di portare a termine gli studi universitari.
+Ringrazio tutto lo staff di Studio Indaco, dove ho svolto il tirocinio formativo e con cui collaboro tutt'ora, per l’ospitalità, la professionalità e per le skills acquisite sul campo.
+Infine, vorrei dedicare questo piccolo traguardo a me stesso, che possa essere l’inizio di una lunga e brillante carriera professionale.
+
+\clearpage
+
+\begin{thebibliography}{9}
+    \addcontentsline{toc}{section}{Bibliografia}
+        \bibitem{}
+            Sito internet,
+            \textit{it.wikipedia.org}
+        \bibitem{}
+            Sito internet,
+            \textit{stackexchange.com}
+        \bibitem{}
+            Sito internet,
+            \textit{stackoverflow.com}
+        \bibitem{}
+            Sito internet,
+            \textit{redhat.com}
+    \end{thebibliography}
 
 \end{document}
