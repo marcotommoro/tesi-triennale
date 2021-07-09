@@ -1,12 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 
-% Adjusting margins to personal my need
-%\addtolength{\oddsidemargin}{-.5in}
-%\addtolength{\evensidemargin}{-.5in}
-%\addtolength{\textwidth}{1in}
-%\addtolength{\topmargin}{-.5in}
-%\addtolength{\textheight}{1in}
 \renewcommand{\contentsname}{Indice}
 \renewcommand\refname{Bibliografia}
 \renewcommand{\figurename}{Figura}
@@ -19,12 +13,9 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{float}
+\usepackage{setspace}
+
 \graphicspath{{img/}}
-
-
-\title{Tesi}
-\author{Marco Moroni }
-\date{Luglio 2021}
 
 \begin{document}
 
@@ -41,8 +32,13 @@
 
         \vspace{\stretch{12}}
 
-        \huge{ Sviluppo di un Content Management System e Deployment su Infrastrutture Cloud }}\\
-        \vspace{3mm}
+        \huge{\uppercase{
+        Sviluppo di un Content\\
+        Management System e\\
+        Deployment su\\
+        Infrastrutture Cloud\\}}}
+        \vspace{5mm}
+
 
         \vspace{\stretch{6}}
     \end{center}
@@ -65,7 +61,7 @@
         %\rule[0.1cm]{15.8cm}{0.1mm}
         \hspace*{0cm} \hrulefill \hspace*{0cm} \\
         {\large{
-        Anno Accademico 2020/21}}
+        Anno Accademico 2020/2021}}
     \end{center}
 
 \end{titlepage}
@@ -75,8 +71,8 @@
 \begin{abstract}
 \normalsize
 Questa tesi è volta a presentare un’analisi approfondita dell' ambiente di sviluppo utilizzato e di tutti i servizi coinvolti per esternalizzare il lavoro e la sicurezza.
-Durante il tirocinio a Studio Indaco il mio ruolo è stato di backend developer di siti web utilizzando le tecnologie di sviluppo più adeguate e all’avanguardia.
-Oltre alla programmazione di singole web app, uno dei miei compiti principali è stato il contribuire e migliorare la crescita di CUBO, un sistema proprietario di gestione dei contenuti (CMS – Content Management System), con lo scopo futuro di renderlo open source. Un CMS è la scelta migliore per sviluppare un sito adatto alle esigenze del cliente, che poi gestirà automaticamente i contenuti attraverso un pannello grafico che semplifica l'integrazione tra utente e codice.
+Durante il tirocinio a Studio Indaco il mio ruolo è stato di full-stack developer di siti web utilizzando le tecnologie di sviluppo più adeguate e all’avanguardia.
+Oltre alla programmazione di singole web app, il mio compito principali è stato il contribuire al miglioramento e alla crescita di Cubo, un sistema proprietario di gestione dei contenuti (CMS – Content Management System), con lo scopo futuro di renderlo open source. Un CMS è la scelta migliore per sviluppare un sito adatto alle esigenze del cliente, che poi gestirà automaticamente i contenuti attraverso un pannello grafico che semplifica l'integrazione tra utente e codice.
 
 \end{abstract}
 \clearpage
@@ -88,16 +84,16 @@ Oltre alla programmazione di singole web app, uno dei miei compiti principali è
 \newpage
 
 \section{Introduzione}
-In questo documento di tesi si descrivono le attività svolte durante le trecentosessanta ore di tirocinio svolto presso Studio Indaco, un'azienda di Mantova specializzata in pianificazione strateica per il web, \textbf{realizzazione di siti internet}, campagne web e fotografia.
+In questo documento di tesi si descrivono le attività svolte durante le trecentosessanta ore di tirocinio svolto presso Studio Indaco, un'azienda di Mantova specializzata in pianificazione strategica per il web, \textbf{realizzazione di siti internet}, campagne web e fotografia.
 \subsection{Descrizione dell'azienda}
-La struttura, composta da uno staff di 10 esperti suddivisi nelle varie aree aziendali, consente di organizzare le attività progettuali, curandone ogni singolo aspetto, dalla progettazione alla realizzazione finale.
+La struttura, composta da uno staff di dieci esperti suddivisi nelle varie aree aziendali, consente di organizzare le attività progettuali, curandone ogni singolo aspetto, dalla progettazione alla realizzazione finale.
 L’azienda si avvale di diversi servizi esterni di supporto: dall’hosting dei siti web, alle email, ai microservizi di supporto ai programmatori, che si stanno man mano diffondendo sempre di più nell’ambito dello sviluppo.
-Studio indaco è nata nel 2018 partendo da 2 soci fino ad arrivare a giugno 2021 ad avere 10 dipendenti.
+Studio indaco è nata nel 2018 partendo da due soci fino ad arrivare a giugno 2021 ad avere dieci dipendenti.
 
 \subsection{Obiettivi ed attività aziendale}
-Lo scopo del tirocinio concordato con il tutor aziendale Marco Zolin, fondatore di Studio Indaco, è stato principalmente lo sviluppo del CMS proprietario dal nome CUBO, la base di ogni sito web creato dall’agenzia, nel  quale ho investito la maggior parte del tempo del tirocinio.
-Il ruolo a me assegnato è di full-stack developer, cioè sviluppatore completo. Con full-stack developer s'intende un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend; non significa essere un esperto in ogni singolo linguaggio o tecnologia esistente. Essere un full stack developer significa essere flessibile tra i diversi aspetti di un’applicazione, conoscendo quindi le tecnologie principali della programmazione frontend (HTML, CSS e JavaScript) e almeno un linguaggio backend, riuscendo a gestire le chiamate lato server e lato client, e le integrazioni con il database.
-Oltre alle doti di programmazione un full-stack developer deve avere le competenze di configurare un server per l'hosting ed il deploy di un'applicazione web.
+Lo scopo del tirocinio concordato con il tutor aziendale Marco Zolin, fondatore di Studio Indaco, è stato principalmente lo sviluppo del cms proprietario dal nome Cubo, la base di ogni sito web creato dall’agenzia, nel  quale ho investito la maggior parte del tempo del tirocinio.
+Il ruolo a me assegnato è di full-stack developer, cioè sviluppatore completo. Con full-stack developer s'intende un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend; non significa essere un esperto in ogni singolo linguaggio o tecnologia esistente. Essere un full-stack developer significa essere flessibile tra i diversi aspetti di un’applicazione, conoscendo quindi le tecnologie principali della programmazione frontend (HTML, CSS e JavaScript) e almeno un linguaggio backend, riuscendo a gestire le chiamate lato server e lato client, e le integrazioni con il database.
+Oltre alle doti di programmazione, un full-stack developer, deve avere le competenze di configurare un server per l'hosting ed il deploy di un'applicazione web.
 La figura che emerge è quella di un programmatore in grado di gestire autonomamente client, server e database, e di rendere funzionante e sicura l'applicazione sviluppata.
 \clearpage
 \section{Aspetti teorici}
@@ -495,14 +491,19 @@ Si differenziano invece i linguaggi NO SQL (Not Only SQL), che non hanno una str
 I DBMS NO SQL sono in genere più veloci rispetto alla loro controparte, ma non sempre sono adatti ad ogni caso d’uso. È preferibile utilizzare un database SQL quando si andranno ad interrogare i DBMS con query complesse ed a lavorare con tipi di dati in relazione tra di loro; è invece preferibile l’utilizzo di un database NO SQL quando si necessita di più flessibilità nei dati e le query sono realtivamente semplici.
 Come con la dura scelta del server, lo sviluppatore/sistemista è chiamato a decidere anche dove posizionare il proprio database, se gestirlo autonomamente o acquistarne uno in cloud da un fornitore di servizi. Tra i più famosi fornitori di servizi troviamo Amazon AWS. Per Cubo e i siti web basati su Cubo si è deciso di esternalizzare il database su Amazon AWS.
 
+\subsection{CDN}
+Una Content Delivery Network (o rete di distrubuzione dei contenuti) è una rete di server distribuiti per il pianeta con lo scopo di velocizzare ed alleggerire il server che gestisce l'applicazione web.
+Una CDN memorizza nella cache dei vari server distribuiti sul pianeta le pagine statiche e quando un utente digita una richiesta sul browser, i file vengono recuperati dalla posizione più vicina a lui, rendendo la richiesta molto più veloce e non appesantendo il server del sito web.
+Per i siti web basati su Cubo, si utilizza \textbf{Cloudflare}, una CDN che oltre al sistema di caching permette di aggiunere un layer di sicurezza e protezione da attacchi DDos, spam e scraping, decidendo in tempo reale se rafforzare o diminuire le misure di sicurezza.
+
 \clearpage
 
 \section*{Ringraziamenti}
 \addcontentsline{toc}{section}{Ringraziamenti}
 A conclusione di questo elaborato, desidero menzionare tutte le persone, senza le quali questo lavoro di tesi non esisterebbe nemmeno.
 Ringrazio il mio relatore Luca Ferretti, che in questi mesi di lavoro, ha saputo guidarmi, con suggerimenti pratici, nelle ricerche e nella stesura dell’elaborato.
-Ringrazio di cuore i miei genitori. Grazie per avermi sempre sostenuto e per avermi permesso di portare a termine gli studi universitari.
-Ringrazio tutto lo staff di Studio Indaco, dove ho svolto il tirocinio formativo e con cui collaboro tutt'ora, per l’ospitalità, la professionalità e per le skills acquisite sul campo.
+Ringrazio di cuore i miei genitori, per avermi sempre sostenuto e per avermi permesso di portare a termine gli studi universitari.
+Ringrazio tutto lo staff di Studio Indaco, per l’ospitalità, la professionalità e per le skills acquisite sul campo.
 Infine, vorrei dedicare questo piccolo traguardo a me stesso, che possa essere l’inizio di una lunga e brillante carriera professionale.
 
 \clearpage
@@ -521,6 +522,9 @@ Infine, vorrei dedicare questo piccolo traguardo a me stesso, che possa essere l
         \bibitem{}
             Sito internet,
             \textit{redhat.com}
+        \bibitem{}
+            Sito internet,
+            \textit{creativemotions.it}
     \end{thebibliography}
 
 \end{document}
