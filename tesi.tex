@@ -24,17 +24,13 @@
     {
 
         \large
-        \textbf{Università  degli studi di Modena e Reggio Emilia} \\
+        \textbf{Università  degli Studi di Modena e Reggio Emilia} \\
         \textbf{Dipartimento di Ingegneria Enzo Ferrari} \\
         \vspace{\stretch{0.5}}
         \hspace*{0cm} \hrulefill \hspace*{0cm} \\
         \vspace{\stretch{0.5}}
         \emph{Corso di Laurea in Ingegneria Informatica}
         \vspace{5mm}
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.3\linewidth]{logo_unimore.jpg}
-        \end{figure}
         \vspace{10mm}
         \huge{\uppercase{
         Sviluppo di un Content\\
@@ -51,8 +47,7 @@
     \noindent
     \begin{minipage}[t]{0.47\textwidth}
         {\large{ Relatore\\
-        Prof.
-        Luca Ferretti}}\\
+        Ing. Luca Ferretti}}\\
         \\
     \end{minipage}
     \hfill
@@ -71,14 +66,6 @@
 \end{titlepage}
 
 \clearpage
-
-\begin{abstract}
-\normalsize
-Questa tesi è volta a presentare un’analisi approfondita dell' ambiente di sviluppo utilizzato e di tutti i servizi coinvolti per esternalizzare il lavoro e la sicurezza.
-Durante il tirocinio a Studio Indaco il mio ruolo è stato di full-stack developer di siti web utilizzando le tecnologie di sviluppo più adeguate e all’avanguardia.
-Oltre alla programmazione di singole web app, il mio compito principali è stato il contribuire al miglioramento e alla crescita di Cubo, un sistema proprietario di gestione dei contenuti (CMS – Content Management System), con lo scopo futuro di renderlo open source. Un CMS è la scelta migliore per sviluppare un sito adatto alle esigenze del cliente, che poi gestirà automaticamente i contenuti attraverso un pannello grafico che semplifica l'integrazione tra utente e codice.
-
-\end{abstract}
 \clearpage
 \tableofcontents{}
 \clearpage
@@ -89,24 +76,40 @@ Oltre alla programmazione di singole web app, il mio compito principali è stato
 
 \section{Introduzione}
 In questo documento di tesi si descrivono le attività svolte durante le trecentosessanta ore di tirocinio svolto presso Studio Indaco, un'azienda di Mantova specializzata in pianificazione strategica per il web, \textbf{realizzazione di siti internet}, campagne web e fotografia.
-\subsection{Descrizione dell'azienda}
-La struttura, composta da uno staff di dieci esperti suddivisi nelle varie aree aziendali, consente di organizzare le attività progettuali, curandone ogni singolo aspetto, dalla progettazione alla realizzazione finale.
+In particolare, si presenta un’analisi approfondita dell'ambiente di sviluppo utilizzato e di tutti i servizi coinvolti per esternalizzare il lavoro e la sicurezza.
+Durante il tirocinio a Studio Indaco il mio ruolo è stato di full-stack developer di siti web utilizzando le tecnologie di sviluppo più adeguate e all’avanguardia.
+Oltre alla programmazione di singole web app, il mio compito principali è stato il contribuire al miglioramento e alla crescita di Cubo, un sistema proprietario di gestione dei contenuti (CMS – Content Management System), con lo scopo futuro di renderlo open source. Un CMS è la scelta migliore per sviluppare un sito adatto alle esigenze del cliente, che poi gestirà automaticamente i contenuti attraverso un pannello grafico che semplifica l'integrazione tra utente e codice.
+
+La struttura dell'azienda, composta da uno staff di dieci esperti suddivisi nelle varie aree aziendali, consente di organizzare le attività progettuali, curandone ogni singolo aspetto, dalla progettazione alla realizzazione finale.
 L’azienda si avvale di diversi servizi esterni di supporto: dall’hosting dei siti web, alle email, ai microservizi di supporto ai programmatori, che si stanno man mano diffondendo sempre di più nell’ambito dello sviluppo.
 Studio indaco è nata nel 2018 partendo da due soci fino ad arrivare a giugno 2021 ad avere dieci dipendenti.
 
-\subsection{Obiettivi ed attività aziendale}
-Lo scopo del tirocinio concordato con il tutor aziendale Marco Zolin, fondatore di Studio Indaco, è stato principalmente lo sviluppo del cms proprietario dal nome Cubo, la base di ogni sito web creato dall’agenzia, nel  quale ho investito la maggior parte del tempo del tirocinio.
+Lo scopo del tirocinio concordato con il tutor aziendale Marco Zolin, fondatore di Studio Indaco, è stato principalmente lo sviluppo del CMS proprietario dal nome Cubo, la base di ogni sito web creato dall’agenzia, nel  quale ho investito la maggior parte del tempo del tirocinio.
 Il ruolo a me assegnato è di full-stack developer, cioè sviluppatore completo. Con full-stack developer s'intende un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend; non significa essere un esperto in ogni singolo linguaggio o tecnologia esistente. Essere un full-stack developer significa essere flessibile tra i diversi aspetti di un’applicazione, conoscendo quindi le tecnologie principali della programmazione frontend (HTML, CSS e JavaScript) e almeno un linguaggio backend, riuscendo a gestire le chiamate lato server e lato client, e le integrazioni con il database.
-Oltre alle doti di programmazione, un full-stack developer, deve avere le competenze di configurare un server per l'hosting ed il deploy di un'applicazione web.
+Oltre alle doti di programmazione, un full-stack developer deve avere le competenze di configurare un server per l'hosting ed il deploy di un'applicazione web.
 La figura che emerge è quella di un programmatore in grado di gestire autonomamente client, server e database, e di rendere funzionante e sicura l'applicazione sviluppata.
+
+Si anticipa che per questo documento si prendono come esempi alcuni parti di applicazioni sviluppati durante il tirocinio, che sono significativi per l'intera attività svolta.
+
+Il documento è strutturatto nelle seguenti parti.
+Il Capitolo~\ref{aspetti_teorici} descrive le conoscenze tecnologiche necessarie alla comprensione del resto del documento.
+%
+Il Capitolo~\ref{sviluppo} descrive le attività di sviluppo per l'applicazione presa in esame.
+%
+Il Capitolo~\ref{scelte_tecnologiche} descrive le scelte tecnologiche per il deployment dell'applicazione, comprese analisi legate ai paradigmi Cloud da utlizzare.
+%
+Il Capitolo~\ref{conclusioni} riassume le considerazioni sul lavoro svolto e conclude il documento.
 \clearpage
-\section{Aspetti teorici}
+
+\section{Conoscenze di base}
+\label{aspetti_teorici}
 Questo capitolo si focalizza sugli aspetti teorici e strumenti necessari utilizzati per poter realizzare l’obiettivo del tirocinio. Poiché i compiti principali assegnati riguardano la creazione e la gestione di siti internet, di seguito viene descritto come un sito web debba essere organizzato affinché sia accessibile e come l’usabilità del web sia fondamentale per venire incontro ai bisogni degli utenti finali.
 
 \subsection{Linguaggi utilizzati}
 In questa sezione si esaminano i linguaggi utilizzati durante lo sviluppo, i costrutti di programmazione e gli ausili che sono stati utilizzati.
 
 Nel tempo libero ho intrapreso attività progettuali, da piccoli esperimenti personali fini a se stessi tramite l’ausilio di raspberry pi ed arduino, alla realizzazione e vendita di applicazioni web complesse. Questi lavori mi hanno dato l’occasione di fare esperienza con nuovi strumenti e tecniche di sviluppo con una base comune: Javascript.
+\label{javascript}
 Javascript è un linguaggio di scripting lato client utilizzato comunemente per rendere interattive le pagine web; è un linguaggio di programmazione interpretato, ciò significa che quando si esegue lo script, viene letta, tradotta ed eseguita un’istruzione alla volta; a differenza dei linguaggi compilati (come c/c++, go, java) che prima di essere eseguiti vengoo appunto compliati, cioè tradotti in linguaggio macchina  creando un file eseguibile. I linguaggi compilati vantano di performance superiori rispetto ai linguaggi interpretati, che hanno però solitamente una portabilità più alta e soprattutto l’immediatezza tra quello che viene scritto e l’esecuzione.
 Javascript, considerato all’inizio, un “linguaggio di serie B” perché non gode di una buona gestione dei tipi di dato, del casting (conversione), della gestione degli oggetti, ed altri svariati motivi, negli ultimi anni si è evoluto fino a diventare un linguaggio universale. La sua versatilità favorisce lo sviluppo sia front-end che back-end, oltre che essere utile per i test. Di conseguenza, si possono trovare molte librerie e framework JavaScript per ogni scopo.
 
@@ -162,55 +165,56 @@ Gli strumenti utilizzati durante il tirocinio sono stati predisposti dal tutor a
 L'azienda, in particolare, ha scelto di utilizzare i seguenti software per lo sviluppo di applicazioni web.
 
 \begin{itemize}
-    \item \textbf{Django}, è un web framework con licenza open source per lo sviluppo di applicazioni web, scritto in linguaggio Python, seguendo il paradigma "Model View Template". Il progetto è sviluppato dalla "Django Software Foundation" (DSF), un'organizzazione indipendente senza scopo di lucro. Venne concepito inizialmente per gestire diversi siti di notizie per la World Company di Lawrence (Kansas), e distribuito con una licenza BSD a luglio 2005;
+    \item \textbf{Django}~[1], è un web framework con licenza open source per lo sviluppo di applicazioni web, scritto in linguaggio Python, seguendo il paradigma "Model View Template". Il progetto è sviluppato dalla "Django Software Foundation" (DSF), un'organizzazione indipendente senza scopo di lucro. Venne concepito inizialmente per gestire diversi siti di notizie per la World Company di Lawrence (Kansas), e distribuito con una licenza BSD a luglio 2005;
 
     \item \textbf{Vue.js}, è un framework JavaScript open-source in configurazione "Model View Viewmodel" per la creazione di interfacce utente e single-page applications. È stato creato da Evan You ed è gestito da lui stesso e i membri attivi del core team, provenienti da varie società come Netlify e Netguru;
 
-    \item\textbf{PostgreSQL} è un completo DBMS (DataBase Management System) ad oggetti rilasciato con licenza libera. Spesso abbreviato come "Postgres", sebbene questo sia un vecchio nome dello stesso progetto. É una reale alternativa sia rispetto ad altri prodotti liberi come MySQL, Firebird SQL e MaxDB, sia a quelli a codice chiuso come Oracle, IBM Informix o DB2, ed offre caratteristiche uniche nel suo genere che lo pongono per alcuni aspetti all'avanguardia nel settore delle basi di dati, ad esempio postgres permette agli utenti di definire nuovi tipi basati sui normali tipi di dato SQLe PostgreSQL, inoltre, permette l'ereditarietà dei tipi;
+    \item\textbf{PostgreSQL} è un completo DBMS (DataBase Management System) ad oggetti rilasciato con licenza libera. Spesso abbreviato come "Postgres", sebbene questo sia un vecchio nome dello stesso progetto. É una reale alternativa sia rispetto ad altri prodotti liberi come MySQL, Firebird SQL e MaxDB, sia a quelli a codice chiuso come Oracle, IBM Informix o DB2, ed offre caratteristiche uniche nel suo genere che lo pongono per alcuni aspetti all'avanguardia nel settore delle basi di dati, ad esempio postgres permette agli utenti di definire nuovi tipi basati sui normali tipi di dato SQLe PostgreSQL, inoltre, permette l'ereditarietà dei tipi.
 \end{itemize}
 
-\subsection{Conoscenze preliminari}
+\subsection{Tecnologie Web}
 Per sviluppare un sito web è necessario conoscere i tre linguaggi che un browser è in grado di interpretare: html, css, e javascript.
 \begin{itemize}
     \item \textbf{Html} (Hypertext Markup Language) è un linguaggio di markup, cioè definisce un insieme di regole che descrivono i meccanismi di rappresentazione (strutturali, semantici, presentazionali) ed il layout di un testo;
     \item \textbf{Css} (Cascading Style Sheets) è un linguaggio usato per definire la formattazione e lo stile di documenti HTML;
-    \item \textbf{Javascript} --- discusso precedentemente
+    \item \textbf{Javascript} è un linguaggio client-side per lo sviluppo di applicazioni Web dinamiche discusso precedentemente in Sezione~\ref{javascript}.
 \end{itemize}
 
 Negli ultimi decenni non è più sufficiente la conoscenza base di questi tre linguaggi, ma ad affiancare i programmatori si sono aggiunti i framework (definiti nel capitolo precedente), che forniscono una base già sviluppata di classi e metodi comuni e riutilizzabili nella maggior parte dei progetti. Esistono framework pressochè per ogni linguaggio, ognuno con uno scopo e con delle funzionalità differenti.
 Oltre ad essi, che sono a supporto degli sviluppatori, hanno preso piede anche i CMS (Content Management System) a supporto dei	gestori di siti web, permettendo loro di creare pagine, modificarle, inserire immagini e contenuti rimanendo però esenti (o quasi) dalla programmazione.
-Un esempio di un cms diffuso è Wordpress, che copre circa il 40\% dei siti web attualmente in circolazione, che si stima siano in totale 1,7 bilioni.
+Un esempio di un CMS diffuso è Wordpress, che copre circa il 40\% dei siti web attualmente in circolazione, che si stima siano in totale 1,7 bilioni.
 Grazie a Wordpress chiunque può creare il proprio spazio su internet e rendersi visibile a tutti.
-L’obiettivo, come già ribadito, di questo tirocinio è creare un cms proprietario, chiamato CUBO, che racchiuda le funzionalità base per rendere indipendenti i clienti, ma che allo stesso tempo sia totalmente personalizzabile dall’agenzia in base alle esigenze di questi ultimi.
+L’obiettivo, come già ribadito, di questo tirocinio è creare un CMS proprietario, chiamato CUBO, che racchiuda le funzionalità base per rendere indipendenti i clienti, ma che allo stesso tempo sia totalmente personalizzabile dall’agenzia in base alle esigenze di questi ultimi.
 \clearpage
 \section{Sviluppo}
-In questo capitolo si vanno a descrivere e approfondire tutti i passaggi dello sviluppo di CUBO.
-Per questo capitolo si prende come esempio il modello \textit{Post} presente nell’applicazione \textit{Blog}, che va a descrivere gli attributi di ogni post (articolo) che si può trovare nel blog.
-
+\label{sviluppo}
+In questo capitolo si vanno a descrivere e approfondire tutti i passaggi dello sviluppo di Cubo.
+Durante l'attività in particolare si è lavorato su moduli aggiuntivi ed opzionali relativi ad un sito web, nello specifico:
+\begin{quote}
+   \textit{ Chi siamo, Banner, Blog, Catalogo, Documenti, Homepage, Offerte, Portfolio, Camere, Luoghi, Recensioni, E-commerce, Negozi.}
+\end{quote}
+Come anticipato, per questo capitolo si prende come esempio il modello \textit{Post} presente nell’applicazione \textit{Blog}, che va a descrivere gli attributi di ogni post (articolo) che si può trovare nel blog.
 \subsection{Introduzione a Django}
-
 Lo sviluppo è partito dallo studio di Django, il framework su cui è basato Cubo.
-Django, libreria scritta nel linguaggio Python, racchiude al suo interno un set di classi, e metodi che permettono di velocizzare lo sviluppo iniziale di un progetto web. Django è basato sul paradigma model-view-template:
+Django, libreria scritta nel linguaggio Python, racchiude al suo interno un set di classi, e metodi che permettono di velocizzare lo sviluppo iniziale di un progetto web.
+~\label{mvt}
+Django è basato sul paradigma Model-View-Template:
 \begin{enumerate}
     \item creo il \textbf{modello}: un insieme di classi per la rappresentazione dei dati. Queste classi forniscono una rappresentazione logica per la crazione delle tabelle sul database e consente di utilizzare gli oggetti per effettuare le operazioni CRUD sui dati presenti sul database;
     \item imposto le \textbf{viste}, funzioni che gestiscono il flusso dell’applicazione. Grazie a queste è possibile definire il comportamento delle pagine all’interno dell’applicazione in funzione dell'utente. In una vista è possibile prendere una serie di dati dal modello, elaborarli e decidere quale template utilizzare per mostrare il risultato all’utente finale;
     \item infine, si definiscono i \textbf{template}, file html che descrivono la presentazione dei dati cooperando con la \textbf{vista} del pattern ed utlizzando i dati provenienti da essa.
 \end{enumerate}
 
-Questa suddivisione consente a diverse figure professionali, di lavorare in modo indipendente alle parti dell’applicazione di propria competenza: gli sviluppatori si dedicheranno al modello dei dati e alle viste, i web designer ai template.
+Questa suddivisione consente a diverse figure professionali, di lavorare in modo indipendente alle parti dell’applicazione di propria competenza: gli sviluppatori si dedicheranno al modello dei dati e alle viste, i Web designer ai template.
 
-Per quanto riguarda le richieste di dati al database, django effettua una mappatura automatica tra i modelli e le tabelle logiche sul database (\textbf{ORM} -- Object Relational Mapping), evitando così ai programmatori di effettuare le classiche richieste in linguaggio SQL, ma permettendo di utilizzare gli oggetti, rendendo la scrittura del codice più ordinata e pulita. Inoltre la tecnica \textbf{ORM}, rende il codice più sicuro dato che impedisce, di natura, qualsiasi attacco di SQL injection: una tecnica di iniezione di codice, usata per infettare applicazioni che gestiscono dati attraverso database relazionali sfruttando il linguaggio SQL. Il mancato controllo dell'input dell'utente permette di inserire artificiosamente delle stringhe di codice SQL che saranno eseguite dall'applicazione server: grazie a questo meccanismo è possibile far eseguire comandi SQL anche molto complessi, dall'alterazione dei dati, alla creazione di nuovi utenti, al download completo dei contenuti nel database.
+Per quanto riguarda le richieste di dati al database, Django effettua una mappatura automatica tra i modelli e le tabelle sul database (\textbf{ORM} -- Object Relational Mapping), evitando così ai programmatori di effettuare le classiche richieste in linguaggio SQL, ma permettendo di utilizzare gli oggetti, rendendo la scrittura del codice più ordinata e pulita. Inoltre la tecnica \textbf{ORM}, rende il codice più sicuro dato che impedisce, di natura, qualsiasi attacco di SQL injection: una tecnica di iniezione di codice, usata per infettare applicazioni che gestiscono dati attraverso database relazionali sfruttando il linguaggio SQL. Il mancato controllo dell'input dell'utente permette di inserire artificiosamente delle stringhe di codice SQL che saranno eseguite dall'applicazione server: grazie a questo meccanismo è possibile far eseguire comandi SQL anche molto complessi, dall'alterazione dei dati, alla creazione di nuovi utenti, al download completo dei contenuti nel database.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{sql_injection.png}
     \caption{Esempio di sql injection}
 \end{figure}
-\subsection{Ideazione}
-Per la creazione del gestore di contenuti ci si è prima concentrati sull’ideazione e sulle caratteristiche principali del cms.
-Si definiscono applicazioni tutti i moduli aggiuntivi ed opzionali relativi ad un sito web, nello specifico sono:
-\begin{quote}
-    chi siamo, banner, blog, catalogo, documenti, homepage, offerte, portfolio, camere, luoghi, recensioni, e-commerce, negozi.
-\end{quote}
+\subsection{Requisiti di programmazione}
+
 Le caratteristiche principali di cui CUBO deve godere sono:
 \begin{itemize}
     \item \textbf{flessibilità} nel decidere di utilizzare moduli diversi in progetti diversi. Per esempio per ogni sito web è possibile poter scegliere se utilizzare o meno le applicazioni (come catalogo o e-commerce) e, in caso di necessità, personalizzare ognuno di essi per il progetto in specifico;
@@ -242,7 +246,7 @@ La funzione dei \textbf{template} è quella di trasformare le informazioni logic
 % Come si può notare dall’immagine xxx i dettagli del post (immagine, titolo, e sottotitolo) non sono hard-coded ma sono ricavate dalle variabili recuperate dalla vista.
 I template sono semplici file html, con una sintassi adattata per le variabili di Django; è inoltre possibile eseguire funzioni direttamente all’interno del codice in caso di necessità.
 
-Quando viene effettuata una richiesta, il server di django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework, django effettua un server-side rendering: il server effettua tutte le operazioni necessarie, e poi restituisce al browser client solamente il codice html.
+Quando viene effettuata una richiesta, il server di Django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework, Django effettua un server-side rendering: il server effettua tutte le operazioni necessarie, e poi restituisce al browser client solamente il codice html.
 Altri framework, come React o Vue.js, basati su javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito web.
 
 Entrambe le opzioni sono valide, la scelta dipende dal contesto:
@@ -250,12 +254,12 @@ Entrambe le opzioni sono valide, la scelta dipende dal contesto:
     \item \textbf{server-side} rendering: gode di migliori performance, di sicurezza dei dati, ma le pagine web rimangono statiche;
     \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
 \end{itemize}
-Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura \textbf{sicura} attraverso l’isolamento dei dati tramite server-side e \textbf{dinamica} tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template django html.
+Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura \textbf{sicura} attraverso l’isolamento dei dati tramite server-side e \textbf{dinamica} tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template Django html.
 
 \subsubsection{Modelli astratti}
 Con modelli astratti si intende la creazione di classi standard (o estensione di classi Django), estendibili ed adattabili a molteplici situazioni. Per esempio, la classe astratta \textit{StandardPageMetaModel} è utilizzata come classe padre per ogni modello sul database, dato che racchiude al suo interno attributi di base comuni ad ogni modello, come titolo, sottotitolo, data di creazione/modifica, slug, immagine.
 
-Oltre ai modelli astratti dentro a Cubo sono state implementate molteplici classi astratte, che spaziano dai form alle tabelle alle viste, e attraverso il principio dell'ereditarietà si riesce a riciclare le stesse righe di codice per diversi modelli e applicazioni. Per esempio la classe \textit{BaseCreate} è la classe padre per ogni vista comprensiva di un form (form-view) ed estende tre classi di django \textit{StaffuserRequiredMixin}, \textit{SuccessMessageMixin} e \textit{CreateView}, che permettono la creazione di una form-view ed effettuare i controlli sui permessi di amministratore e la validazione del form.
+Oltre ai modelli astratti dentro a Cubo sono state implementate molteplici classi astratte, che spaziano dai form alle tabelle alle viste, e attraverso il principio dell'ereditarietà si riesce a riciclare le stesse righe di codice per diversi modelli e applicazioni. Per esempio la classe \textit{BaseCreate} è la classe padre per ogni vista comprensiva di un form (form-view) ed estende tre classi di Django \textit{StaffuserRequiredMixin}, \textit{SuccessMessageMixin} e \textit{CreateView}, che permettono la creazione di una form-view ed effettuare i controlli sui permessi di amministratore e la validazione del form.
 \begin{verbatim}
     class BaseCreate(StaffuserRequiredMixin,
                      SuccessMessageMixin, CreateView)
@@ -385,14 +389,9 @@ Una volta aggiunte le applicazioni desiderate alle INSTALLED\_APPS, queste diven
 È possibile che la sola sovrascrittura non sia abbastanza per soddisfare tutte le esigenze, vengono quindi creati i \textit{tempaltetags}. I templatetags sono dei file python che vengono invocati dal template come fossero delle funzioni e possono interagire con i modelli e con il database come fossero delle Viste. Questo è fondamentale quando i dati che vengono forniti dalla Vista non sono adatti al "nuovo" template.
 I tempaltetags vengono spesso utilizzati anche in Cubo quando più template necessitano dell'utilizzo delle stesse funzioni.
 
-\subsubsection{Applicazioni ad-hoc}
-Cubo è un cms completo che copre l'80\% circa delle richieste dei clienti, ma per il 20\% rimanente è necessario intervenire direttamente sul singolo sito web creando una o più applicazioni ad-hoc. Queste applicazioni custom vengono create a partire dai fondamenti di cubo discussi nelle sezioni precendenti (modelli e classi astratte) per avere una base di partenza comune e poter fare affidamento sulle strutture stabili.
-
-
-\textbf{FACCIO UN ESEMPIO DI SITO CON APP CUSTOM CHE HO FATTO?}
-
+Cubo è un CMS completo che copre l'80\% circa delle richieste dei clienti, ma per il 20\% rimanente è necessario intervenire direttamente sul singolo sito web creando una o più applicazioni ad-hoc. Queste applicazioni custom vengono create a partire dai fondamenti di cubo discussi nelle sezioni precendenti (modelli e classi astratte) per avere una base di partenza comune e poter fare affidamento sulle strutture stabili.
 \subsection{Interazione col database}
-Il work-flow segue il paradigma MVT (Model-View-Template) precedentemente discusso. Si parte quindi dalla creazione del Modello con i relativi attributi, si passa dalla View per gestire la richiesta e servire i dati richiesti, ed infine si arriva al Template per visualizzare i graficamente la risposta.
+Il workflow segue il paradigma MVT (Model-View-Template) precedentemente discusso alla sezione \ref{mvt}. Si parte quindi dalla creazione del Modello con i relativi attributi, si passa dalla View per gestire la richiesta e servire i dati richiesti, ed infine si arriva al Template per visualizzare i graficamente la risposta.
 
 Una volta creato il modello è però necessario comunicare al database le modifiche apportate alla struttura delle tabelle sul database.
 I \textbf{file di migrazioni} sono il mezzo attraverso il quale i cambiamenti che vengono effettuati nei Modelli, vengono effettivamente riflessi anche nelle tabelle sul database.
@@ -410,11 +409,12 @@ Una volta sviulppato il sito web, è necessario configurare gli opportuni parame
     \caption{Schema di Cubo}
 \end{figure}
 Nelle configurazioni del sito web si vanno a settare i contatti, le mail, le informazioni legali, i link ai social, analytics e la privacy policy.
-Ogni applicazione dispone delle proprie modalità ed impostazioni di caricamento contenuti, in base alle esigenze ed alle necessità del caso d'utilizzo. Per esempio per l'applicazione E-commerce si vanno ad impostare i corrieri e le relative zone di spedizione.
+Ogni applicazione dispone delle proprie modalità ed impostazioni di caricamento contenuti, in base alle esigenze ed alle necessità del caso d'utilizzo. Per esempio per l'applicazione \textit{Blog} invece si vanno a creare i tag, le categorie e gli articoli per il Blog.
+Per l'applicazione \textit{E-commerce} si vanno ad impostare i corrieri e le relative zone di spedizione.
 
 \subsubsection{Blocchi Cubo}
-Come ogni cms che si rispetti, anche Cubo mette a disposizione dei "blocchi" prefabbricati per la costruzione di una pagina. I blocchi sono una libreria di elementi predefiniti che permettono di aggiungere contenuti dinamici, nelle varie pagine del sito, che l'amministratore crea dal pannello admin.
-Esistono blocchi per gestire i seguenti tipi di componenti:
+Come ogni CMS che si rispetti, anche Cubo mette a disposizione dei "blocchi" prefabbricati per la costruzione di una pagina. I blocchi sono una libreria di elementi predefiniti che permettono di aggiungere contenuti dinamici, nelle varie pagine del sito, che l'amministratore crea dal pannello admin.
+L'attività svolta ha afforntato lo sviluppo di blocchi per gestire i seguenti tipi di componenti:
 \begin{itemize}
     \item \textbf{testo}: fornisce un campo dove è possibile inserire il testo personalizzando il carattere e formattazione;
     \item \textbf{immagini}: permette di inserire una o più immagini;
@@ -428,20 +428,19 @@ Ogni blocco è componibile con un altro in modo da lasciare libertà \break all'
 I blocchi permettono quindi di rimanere indipendenti dai clienti e dalle loro scelte di creazione dei contenuti, in modo da non incorrere in costanti modifiche/aggiunte/rimozioni di codice ma di lasciare ai clienti la responsabilità della creazione dei contenuti. Cubo è il mezzo tramite il quale i clienti creano i contenuti.
 
 \clearpage
-\section{Scelte tecnologiche}
+\section{Scelte di deployment}
+\label{scelte_tecnologiche}
 In questa sezione si analizzano nel dettaglio le scelte tegnologiche che si adottano nel passagggio tra sviluppo e produzione di un'applicazione web.
 
-\subsection{Server}
-
-Una volta che l’applicazione web è stata sviluppata, è necessario assicurarsi che sia accessibile a tutti sul World Wide Web (WWW). Per fare ciò, ci sono tre principali alternative che andremo ad analizzare nel dettaglio elencandone inoltre, i vantaggi e gli svantaggi:
+\subsection{Valutazione infrastruttura di deployment}
+Una volta che l’applicazione web è stata sviluppata, è necessario assicurarsi che sia accessibile a tutti sul World Wide Web (WWW). Per fare ciò, ci sono tre principali alternative che andremo ad analizzare nel dettaglio elencandone inoltre i vantaggi e gli svantaggi:
 \begin{enumerate}
-    \item acquistare un server fisico;
-    \item acquistare un server in cloud;
-    \item acquistare uno spazio gestito.
+    \item acquisto e mantenimento di un server fisico;
+    \item adozione di unserver dedicato in cloud;
+    \item adozione di uno server cloud virtuale.
 \end{enumerate}
-\subsubsection{Acquistare un server fisico}
-Con “acquistare un server fisico” si intende l’acquisto di tutti i componenti necessari per comporre un computer dedicato a uno o più siti web. Per questa soluzione sono necessarie diverse competenze e saper:
-
+\subsubsection{Acquisto e mantenimento un server fisico}
+Con acquistare e mantenere un server fisico si intende l’acquisto di tutti i componenti necessari per comporre un computer dedicato a uno o più siti web. Per questa soluzione sono necessarie diverse competenze e saper:
 \begin{itemize}
     \item comporre un server;
     \item gestire un server, a partire dall’installazione del sistema operativo;
@@ -453,14 +452,14 @@ Con “acquistare un server fisico” si intende l’acquisto di tutti i compone
 \end{itemize}
 
 Come si può notare dall’elenco delle competenze, sono necessari uno o più sistemisti che si dedichino alla gestione del server, e di tutto ciò che gli gira intorno.
-Scegliere questa alternativa implica avere la responsabilità completa della gestione del server dalla propria parte, ma anche che nessun ente esterno avrà i permessi di accedere ai dati, e che la sicurezza e privacy dell’intero ecosistema sono garantite. Uno svantaggio da tenere in considerazione con questa opzione è che i componenti non sono durevoli, possono danneggiarsi, guastarsi, e vanno quindi sostituiti con dei componenti nuovi.
+Scegliere questa alternativa implica avere la responsabilità completa della gestione del server dalla propria parte, ma anche che nessun ente esterno avrà i permessi di accedere ai dati, e che la privacy dell’intero ecosistema è garantite. Uno svantaggio da tenere in considerazione con questa opzione è che i componenti non sono durevoli, possono danneggiarsi, guastarsi, e vanno quindi sostituiti con dei componenti nuovi. Inoltre è necessario preoccuparsi del monitoraggio dello stato della sicurezza della piattaforma e del suo aggiornamento costante.
 
-\subsubsection{Acquistare un server in cloud}
-Con “acquistare un server in cloud” si intende l’utilizzo di una IAAS (Infrastructure As A Service). A differenza della soluzione precedente, questa opzione risparmia tre passaggi fondamentali del setup di un server: acquisto componenti, composizione server e installazione sistema operativo.
+\subsubsection{Adozione di un server dedicato in cloud}
+Con adottare un server in cloud dedicato si intende l’utilizzo di una IaaS (Infrastructure as a Service). A differenza della soluzione precedente, questa opzione risparmia tre passaggi fondamentali del setup di un server: acquisto componenti, composizione server e installazione sistema operativo.
 Questa soluzione è perfetta per chi vuole la completa autonomia sul proprio server, in modo da poter gestire applicazioni complesse, ma allo stesso tempo non deve tener conto degli svantaggi dell’opzione precedente. Le performance dei server sono garantite dal provider del servizio che curerà l’obsolescenza dei componenti e la loro costante manutenzione. Il provider inoltre si fa carico di alcuni livelli di sicurezza per l’accesso alle risorse. Esempi di aziende che offrono queste infrastrutture sono Digitalocean, Amazon Lightsail, Google cloud platform o Microsoft Azure.
 
-\subsubsection{Acquistare uno spazio gestito}
-Con “acquistare uno spazio gestito” si intende l’utilizzo di una PAAS (platform as a service). Questa soluzione permette allo sviluppatore di concentrarsi unicamente sullo sviluppo di applicazioni migliori, senza investire tempo nella preparazione e manutenzione del server e del software di gestione, che sarà completamente a carico del provider della piattaforma.
+\subsubsection{Adozione di server cloud virtuale}
+Con adozione di uno spazio gestito si intende l’utilizzo di una PaaS (Platform as a Service). Questa soluzione permette allo sviluppatore di concentrarsi unicamente sullo sviluppo di applicazioni migliori, senza investire tempo nella preparazione e manutenzione del server e del software di gestione, che sarà completamente a carico del provider della piattaforma.
 Il modello di piattaforma più diffuso negli ultimi anni è sicuramente Docker, una tecnologia di containerizzazione che consente la creazione e l'utilizzo dei container Linux.
 Un container Linux è un insieme di uno o più processi isolati dal resto del sistema. Poiché tutti i file necessari per eseguire tali processi vengono forniti da un'immagine distinta, i container Linux sono portabili e coerenti in tutti gli ambienti, dallo sviluppo, ai test, fino alla produzione. Questo li rende molto più veloci rispetto ai tradizionali flussi di sviluppo che dipendono dalla replica degli ambienti di test tradizionali. I container, oltre a godere di una grandissima popolarità e ad essere apprezzati per la loro facilità d'uso, hanno un ruolo importante anche nella sicurezza IT, poiché la compromissione di un singolo container non va ad influire sull’intero sistema.
 Docker considera i container come macchine virtuali modulari estremamente leggere, offrendo la flessibilità di creare, distribuire, copiare e spostare i container da un ambiente all'altro, ottimizzando così le app per il cloud.
@@ -474,6 +473,7 @@ Come si può notare dall’immagine sottostante, a differenza delle classiche ma
 \end{figure}
 
 Si è deciso di optare per la terza categoria di deploy di un’applicazione web. In particolare vengono utilizzari due diversi servizi in base alle necessità di risorse e sviluppo del cliente: Heroku e fly.io.
+
 
 
 \subsection{Database}
@@ -497,12 +497,23 @@ I DBMS NO SQL sono in genere più veloci rispetto alla loro controparte, ma non 
 Come con la dura scelta del server, lo sviluppatore/sistemista è chiamato a decidere anche dove posizionare il proprio database, se gestirlo autonomamente o acquistarne uno in cloud da un fornitore di servizi. Tra i più famosi fornitori di servizi troviamo Amazon AWS. Per Cubo e i siti web basati su Cubo si è deciso di esternalizzare il database su Amazon AWS.
 
 \subsection{CDN}
-Una Content Delivery Network (o rete di distrubuzione dei contenuti) è una rete di server distribuiti per il pianeta con lo scopo di velocizzare ed alleggerire il server che gestisce l'applicazione web.
+Una Content Delivery Network (o rete di distrubuzione dei contenuti) è un'azienda che gestisce reti di server distribuiti geograficamente con lo scopo di velocizzare ed alleggerire il server che gestisce l'applicazione web.
 Una CDN memorizza nella cache dei vari server distribuiti sul pianeta le pagine statiche e quando un utente digita una richiesta sul browser, i file vengono recuperati dalla posizione più vicina a lui, rendendo la richiesta molto più veloce e non appesantendo il server del sito web.
 Per i siti web basati su Cubo, si utilizza \textbf{Cloudflare}, una CDN che oltre al sistema di caching permette di settare i dns e di aggiunere un layer di sicurezza e protezione da attacchi DDos, spam e scraping, decidendo in tempo reale se rafforzare o diminuire le misure di sicurezza.
 
 \clearpage
 
+%% add 4
+\clearpage
+\section{Conclusioni}
+\label{conclusioni}
+In questo documento di tesi si son presentati gli aspetti piu importatanti del tirocinio svolto presso studio indaco snc, nell'ambito dello sviluppo di un Content Management System denominato Cubo.
+L'attività ha visto in particolare lo sviluppo di diverse app Django all'interno del CMS utili per lo sviluppo di applicazioni in diversi contesti applicativi.
+Una parte considerevole dell'attività ha inoltre affrontato l'analisi e lo studio di infrastrutture Cloud per il deployment dei siti Web.
+Le applicazioni sviluppate sono attualmente funzionanti e in uso presso diversi clienti dell'azienda.
+Si pianifica inoltre che il CMS Cubo diverrà in un futuro prossimo un progetto open source accessibile, migliorabile ed utilizzabile da chiunque, diventando così un'alternativa reale per altri CMS attualmente in uso.
+
+\clearpage
 \section*{Ringraziamenti}
 \addcontentsline{toc}{section}{Ringraziamenti}
 A conclusione di questo elaborato, desidero menzionare tutte le persone, senza le quali questo lavoro di tesi non esisterebbe nemmeno.
@@ -516,14 +527,8 @@ Infine, vorrei dedicare questo piccolo traguardo a me stesso, che possa essere l
 \begin{thebibliography}{9}
     \addcontentsline{toc}{section}{Bibliografia}
         \bibitem{}
-            Sito internet,
+            Wikipedia,
             \textit{it.wikipedia.org}
-        \bibitem{}
-            Sito internet,
-            \textit{stackexchange.com}
-        \bibitem{}
-            Sito internet,
-            \textit{stackoverflow.com}
         \bibitem{}
             Sito internet,
             \textit{redhat.com}
@@ -533,3 +538,14 @@ Infine, vorrei dedicare questo piccolo traguardo a me stesso, che possa essere l
     \end{thebibliography}
 
 \end{document}
+%     1 - Contesto di lavoro
+%     [2 - Problema del contesto]
+%     3 - Contributi/Overview del lavoro svolto
+%     4,5,6 - Dettagli tecnici
+%     7,8 - Possibili risultati sperimentali
+%     9 - Conclusioni e sviluppi futuri
+
+%     https://web.archive.org/web/20201109042643/https://www.nosupportlinuxhosting.com/
+% https://news.ycombinator.com/item?id=26076050
+% Luca Ferretti16:00
+% https://stackoverflow.com/questions/53760104/how-to-configure-x509-client-certificate-based-authentication-to-connect-to-aws
