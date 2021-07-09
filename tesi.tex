@@ -22,6 +22,7 @@
 \begin{titlepage}
     \begin{center}
     {
+
         \large
         \textbf{Università  degli studi di Modena e Reggio Emilia} \\
         \textbf{Dipartimento di Ingegneria Enzo Ferrari} \\
@@ -29,9 +30,12 @@
         \hspace*{0cm} \hrulefill \hspace*{0cm} \\
         \vspace{\stretch{0.5}}
         \emph{Corso di Laurea in Ingegneria Informatica}
-
-        \vspace{\stretch{12}}
-
+        \vspace{5mm}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.3\linewidth]{logo_unimore.jpg}
+        \end{figure}
+        \vspace{10mm}
         \huge{\uppercase{
         Sviluppo di un Content\\
         Management System e\\
@@ -42,7 +46,7 @@
 
         \vspace{\stretch{6}}
     \end{center}
-    \vspace{40mm}
+    \vspace{25mm}
     \par
     \noindent
     \begin{minipage}[t]{0.47\textwidth}
@@ -124,6 +128,7 @@ Le API (Application Programming Interface, ovvero Interfaccia di programmazione 
 Se, in altre parole, si desidera interagire con un computer o un sistema per recuperare informazioni o eseguire una funzione, un'API facilita la comunicazione con il sistema che può così comprendere e soddisfare la richiesta.
 
 L'API funge quindi da elemento di intermediazione tra gli utenti o i clienti e le risorse o servizi web che questi intendono ottenere. È anche un mezzo con il quale un'organizzazione può condividere risorse e informazioni assicurando al contempo sicurezza, controllo e autenticazione, poiché stabilisce i criteri di accesso alle risorse.
+
 
 L'utilizzo dell'API inoltre non impone all'utente di conoscere le specifiche con cui le risorse vengono recuperate o la loro provenienza.
 
@@ -494,7 +499,7 @@ Come con la dura scelta del server, lo sviluppatore/sistemista è chiamato a dec
 \subsection{CDN}
 Una Content Delivery Network (o rete di distrubuzione dei contenuti) è una rete di server distribuiti per il pianeta con lo scopo di velocizzare ed alleggerire il server che gestisce l'applicazione web.
 Una CDN memorizza nella cache dei vari server distribuiti sul pianeta le pagine statiche e quando un utente digita una richiesta sul browser, i file vengono recuperati dalla posizione più vicina a lui, rendendo la richiesta molto più veloce e non appesantendo il server del sito web.
-Per i siti web basati su Cubo, si utilizza \textbf{Cloudflare}, una CDN che oltre al sistema di caching permette di aggiunere un layer di sicurezza e protezione da attacchi DDos, spam e scraping, decidendo in tempo reale se rafforzare o diminuire le misure di sicurezza.
+Per i siti web basati su Cubo, si utilizza \textbf{Cloudflare}, una CDN che oltre al sistema di caching permette di settare i dns e di aggiunere un layer di sicurezza e protezione da attacchi DDos, spam e scraping, decidendo in tempo reale se rafforzare o diminuire le misure di sicurezza.
 
 \clearpage
 
