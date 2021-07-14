@@ -78,18 +78,18 @@
 In questo documento di tesi si descrivono le attività svolte durante le trecentosessanta ore di tirocinio svolto presso Studio Indaco, un'azienda di Mantova specializzata in pianificazione strategica per il Web, \textbf{realizzazione di siti internet}, campagne Web e fotografia.
 In particolare, si presenta un’analisi approfondita dell'ambiente di sviluppo utilizzato e di tutti i servizi coinvolti per esternalizzare il lavoro e la sicurezza.
 Durante il tirocinio a Studio Indaco il mio ruolo è stato di full-stack developer di siti Web utilizzando le tecnologie di sviluppo più adeguate e all’avanguardia.
-Oltre alla programmazione di singole Web app, il mio compito principali è stato il contribuire al miglioramento e alla crescita di Cubo, un sistema proprietario di gestione dei contenuti (CMS – Content Management System), con lo scopo futuro di renderlo open source. Un CMS è la scelta migliore per sviluppare un sito adatto alle esigenze del cliente, che poi gestirà automaticamente i contenuti attraverso un pannello grafico che semplifica l'integrazione tra utente e codice.
+Oltre alla programmazione di singole Web app, il mio compito principale è stato il contribuire al miglioramento e alla crescita di Cubo, un sistema proprietario di gestione dei contenuti (CMS – Content Management System), con lo scopo futuro di renderlo open source. Un CMS è la scelta migliore per sviluppare un sito adatto alle esigenze del cliente, che poi gestirà automaticamente i contenuti attraverso un pannello grafico che semplifica l'integrazione tra utente e codice.
 
 La struttura dell'azienda, composta da uno staff di dieci esperti suddivisi nelle varie aree aziendali, consente di organizzare le attività progettuali, curandone ogni singolo aspetto, dalla progettazione alla realizzazione finale.
 L’azienda si avvale di diversi servizi esterni di supporto: dall’hosting dei siti Web, alle email, ai microservizi di supporto ai programmatori, che si stanno man mano diffondendo sempre di più nell’ambito dello sviluppo.
-Studio indaco è nata nel 2018 partendo da due soci fino ad arrivare a giugno 2021 ad avere dieci dipendenti.
+Studio Indaco è nata nel 2018 partendo da due soci fino ad arrivare a giugno 2021 ad avere dieci dipendenti.
 
 Lo scopo del tirocinio concordato con il tutor aziendale Marco Zolin, fondatore di Studio Indaco, è stato principalmente lo sviluppo del CMS proprietario dal nome Cubo, la base di ogni sito Web creato dall’agenzia, nel  quale ho investito la maggior parte del tempo del tirocinio.
-Il ruolo a me assegnato è di full-stack developer, cioè sviluppatore completo. Con full-stack developer s'intende un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend; non significa essere un esperto in ogni singolo linguaggio o tecnologia esistente. Essere un full-stack developer significa essere flessibile tra i diversi aspetti di un’applicazione, conoscendo quindi le tecnologie principali della programmazione frontend (HTML, CSS e JavaScript) e almeno un linguaggio backend, riuscendo a gestire le chiamate lato server e lato client, e le integrazioni con il database.
+Il ruolo a me assegnato è di full-stack developer, cioè sviluppatore completo. Con full-stack developer s'intende un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend; non significa essere un esperto in ogni singolo linguaggio o tecnologia esistente. Essere un full-stack developer significa essere flessibile tra i diversi aspetti di un’applicazione, conoscendo quindi le tecnologie principali della programmazione frontend (HTML, CSS e Javascript) e almeno un linguaggio backend, riuscendo a gestire le chiamate lato server e lato client, e le integrazioni con il database.
 Oltre alle doti di programmazione, un full-stack developer deve avere le competenze di configurare un server per l'hosting ed il deploy di un'applicazione Web.
 La figura che emerge è quella di un programmatore in grado di gestire autonomamente client, server e database, e di rendere funzionante e sicura l'applicazione sviluppata.
 
-Si anticipa che per questo documento si prendono come esempi alcuni parti di applicazioni sviluppati durante il tirocinio, che sono significativi per l'intera attività svolta.
+Si anticipa che per questo documento si prendono come esempi alcuni parti di applicazioni sviluppate durante il tirocinio, che sono significative per l'intera attività svolta.
 
 Il documento è strutturatto nelle seguenti parti.
 Il Capitolo~\ref{aspetti_teorici} descrive le conoscenze tecnologiche necessarie alla comprensione del resto del documento.
@@ -109,15 +109,15 @@ Questo capitolo si focalizza sugli aspetti teorici e strumenti necessari utilizz
 In questa sezione si esaminano i linguaggi utilizzati durante lo sviluppo, i costrutti di programmazione e gli ausili che sono stati utilizzati.
 
 Nel tempo libero ho intrapreso attività progettuali, da piccoli esperimenti personali fini a se stessi tramite l’ausilio di raspberry pi ed arduino, alla realizzazione e vendita di applicazioni Web complesse. Questi lavori mi hanno dato l’occasione di fare esperienza con nuovi strumenti e tecniche di sviluppo con una base comune: Javascript.
-\label{javascript}
-Javascript~[1] è un linguaggio di scripting lato client utilizzato comunemente per rendere interattive le pagine Web; è un linguaggio di programmazione interpretato, ciò significa che quando si esegue lo script, viene letta, tradotta ed eseguita un’istruzione alla volta; a differenza dei linguaggi compilati (come c/c++, go, java) che prima di essere eseguiti vengoo appunto compliati, cioè tradotti in linguaggio macchina  creando un file eseguibile. I linguaggi compilati vantano di performance superiori rispetto ai linguaggi interpretati, che hanno però solitamente una portabilità più alta e soprattutto l’immediatezza tra quello che viene scritto e l’esecuzione.
-Javascript, considerato all’inizio, un “linguaggio di serie B” perché non gode di una buona gestione dei tipi di dato, del casting (conversione), della gestione degli oggetti, ed altri svariati motivi, negli ultimi anni si è evoluto fino a diventare un linguaggio universale. La sua versatilità favorisce lo sviluppo sia front-end che back-end, oltre che essere utile per i test. Di conseguenza, si possono trovare molte librerie e framework JavaScript per ogni scopo.
+\label{Javascript}
+Javascript~[1] è un linguaggio di scripting lato client utilizzato comunemente per rendere interattive le pagine Web; è un linguaggio di programmazione interpretato, ciò significa che quando si esegue lo script, viene letta, tradotta ed eseguita un’istruzione alla volta; a differenza dei linguaggi compilati (come c/c++, go, java) che prima di essere eseguiti vengono appunto compliati, cioè tradotti in linguaggio macchina  creando un file eseguibile. I linguaggi compilati vantano di performance superiori rispetto ai linguaggi interpretati, che hanno però solitamente una portabilità più alta e soprattutto l’immediatezza tra quello che viene scritto e l’esecuzione.
+Javascript, considerato all’inizio, un “linguaggio di serie B” perché non gode di una buona gestione dei tipi di dato, del casting, della gestione degli oggetti, ed altri motivi, negli ultimi anni si è evoluto fino a diventare un linguaggio universale. La sua versatilità favorisce lo sviluppo sia front-end che back-end, oltre che essere utile per i test. Di conseguenza, si possono trovare molte librerie e framework Javascript per ogni scopo.
 
 Un framework (struttura), ha lo scopo di fornire strumenti per facilitare e velocizzare il lavoro di programmazione di chi lo adotta.
 Con front-end, nella programmazione, si intende la parte di codice visibile agli utenti finali, mentre con back-end si definisce la porzione di script nascosto che non è direttamente accessibile.
 In un’applicazione Web, è molto consigliata la coesistenza di entrambi, dato che spesso ci si ritrova a lavorare con dati privati, che possono essere credenziali di database, chiavi api per pagamenti, o semplici configurazioni che non vogliono essere di pubblico dominio.
 
-Tutti i framework lato client basati su Javascript, come React, Vue, o Angular, sono quindi categorizzati come front-end, mentre i framework lato server, sempre basati su Javascript, come Node o Deno, sono categorizzati come back-end. Per fare comunicare i due punti si utilizzano le API REST (o RESTful). Un'API REST è un'interfaccia di programmazione delle applicazioni conforme ai vincoli dello stile di architettura REST, che consente inoltre l'interazione con servizi Web RESTful.
+Tutti i framework lato client basati su Javascript, come React, Vue.js, o Angular, sono quindi categorizzati come front-end, mentre i framework lato server, sempre basati su Javascript, come Node o Deno, sono categorizzati come back-end. Per fare comunicare i due punti si utilizzano le API REST (o RESTful). Un'API REST è un'interfaccia di programmazione delle applicazioni conforme ai vincoli dello stile di architettura REST, che consente inoltre l'interazione con servizi Web RESTful.
 
 \subsection{API}
 \begin{figure}[H]
@@ -135,7 +135,7 @@ L'utilizzo dell'API inoltre non impone all'utente di conoscere le specifiche con
 
 REST (Representational State Transfer) è un insieme di vincoli architetturali, non un protocollo né uno standard. Questo approccio architetturale venne ideato per creare Web API basandosi sul protocollo HTTP. Il REST è infatti un sistema di trasmissione dei dati che utilizza HTTP e che fa un grande uso delle funzioni di HTTP, ricorrendo ai comandi GET, POST, PUT, PATCH, DELETE e OPTIONS: grazie a questi si riesce ad identificare ben precise risorse presenti in tutto il vasto Web. Chi sviluppa API può implementare i principi REST in diversi modi.
 %
-Quando una richiesta client viene inviata tramite un'API RESTful, questa trasferisce al richiedente o all'endpoint uno stato rappresentativo della risorsa. L'informazione, viene consegnata, solitamente in formato JSON (Javascript Object Notation). Il formato JSON è uno formati per lo camvio di dati tra client e sever più diffusi, perché è indipendente dal linguaggio e facilmente leggibile da persone e macchine, anche se basato su Javascript.
+Quando una richiesta client viene inviata tramite un'API RESTful, questa trasferisce al richiedente o all'endpoint uno stato rappresentativo della risorsa. L'informazione, viene consegnata, solitamente in formato JSON (Javascript Object Notation). Il formato JSON è uno dei formati per lo scambio di dati tra client e sever più diffusi, perché è indipendente dal linguaggio e facilmente leggibile da persone e macchine, anche se basato su Javascript.
 
 È importante tener presente anche altri aspetti, ad esempio intestazioni e parametri sono importanti nei metodi HTTP di una richiesta HTTP API RESTful API, perché forniscono informazioni per l'identificazione della richiesta quali metadata, autorizzazione, URI, caching, cookie e altro. Esistono intestazioni della richiesta e intestazioni della risposta, ognuna con le proprie informazioni di connessione HTTP e codici di stato.
 
@@ -165,17 +165,17 @@ L'azienda, in particolare, ha scelto di utilizzare i seguenti software per lo sv
 \begin{itemize}
     \item \textbf{Django}~[3], è un Web framework con licenza open source per lo sviluppo di applicazioni Web, scritto in linguaggio Python, seguendo il paradigma "Model View Template". Il progetto è sviluppato dalla "Django Software Foundation" (DSF), un'organizzazione indipendente senza scopo di lucro. Venne concepito inizialmente per gestire diversi siti di notizie per la World Company di Lawrence (Kansas), e distribuito con una licenza BSD a luglio 2005;
 
-    \item \textbf{Vue.js}~[4], è un framework JavaScript open-source in configurazione "Model View Viewmodel" per la creazione di interfacce utente e single-page applications. È stato creato da Evan You ed è gestito da lui stesso e i membri attivi del core team, provenienti da varie società come Netlify e Netguru;
+    \item \textbf{Vue.js}~[4], è un framework Javascript open-source in configurazione "Model View Viewmodel" per la creazione di interfacce utente e single-page applications. È stato creato da Evan You ed è gestito da lui stesso e i membri attivi del core team, provenienti da varie società come Netlify e Netguru;
 
     \item\textbf{PostgreSQL}~[5] è un completo DBMS (DataBase Management System) ad oggetti rilasciato con licenza libera. Spesso abbreviato come "Postgres", sebbene questo sia un vecchio nome dello stesso progetto. É una reale alternativa sia rispetto ad altri prodotti liberi come MySQL, Firebird SQL e MaxDB, sia a quelli a codice chiuso come Oracle, IBM Informix o DB2, ed offre caratteristiche uniche nel suo genere che lo pongono per alcuni aspetti all'avanguardia nel settore delle basi di dati, ad esempio postgres permette agli utenti di definire nuovi tipi basati sui normali tipi di dato SQLe PostgreSQL, inoltre, permette l'ereditarietà dei tipi.
 \end{itemize}
 
 \subsection{Tecnologie Web}
-Per sviluppare un sito Web è necessario conoscere i tre linguaggi che un browser è in grado di interpretare: html, css, e javascript.
+Per sviluppare un sito Web è necessario conoscere i tre linguaggi che un browser è in grado di interpretare: HTML, CSS, e Javascript.
 \begin{itemize}
-    \item \textbf{Html} (Hypertext Markup Language) è un linguaggio di markup, cioè definisce un insieme di regole che descrivono i meccanismi di rappresentazione (strutturali, semantici, presentazionali) ed il layout di un testo;
-    \item \textbf{Css} (Cascading Style Sheets) è un linguaggio usato per definire la formattazione e lo stile di documenti HTML;
-    \item \textbf{Javascript} è un linguaggio client-side per lo sviluppo di applicazioni Web dinamiche discusso precedentemente in Sezione~\ref{javascript}.
+    \item \textbf{HTML} (Hypertext Markup Language) è un linguaggio di markup, cioè definisce un insieme di regole che descrivono i meccanismi di rappresentazione (strutturali, semantici, presentazionali) ed il layout di un testo;
+    \item \textbf{CSS} (Cascading Style Sheets) è un linguaggio usato per definire la formattazione e lo stile di documenti HTML;
+    \item \textbf{Javascript} è un linguaggio client-side per lo sviluppo di applicazioni Web dinamiche discusso precedentemente in Sezione~\ref{Javascript}.
 \end{itemize}
 
 Negli ultimi decenni non è più sufficiente la conoscenza base di questi tre linguaggi, ma ad affiancare i programmatori si sono aggiunti i framework (definiti nel capitolo precedente), che forniscono una base già sviluppata di classi e metodi comuni e riutilizzabili nella maggior parte dei progetti. Esistono framework pressochè per ogni linguaggio, ognuno con uno scopo e con delle funzionalità differenti.
@@ -200,7 +200,7 @@ Django è basato sul paradigma Model-View-Template:
 \begin{enumerate}
     \item creo il \textbf{modello}: un insieme di classi per la rappresentazione dei dati. Queste classi forniscono una rappresentazione logica per la crazione delle tabelle sul database e consente di utilizzare gli oggetti per effettuare le operazioni CRUD sui dati presenti sul database;
     \item imposto le \textbf{viste}, funzioni che gestiscono il flusso dell’applicazione. Grazie a queste è possibile definire il comportamento delle pagine all’interno dell’applicazione in funzione dell'utente. In una vista è possibile prendere una serie di dati dal modello, elaborarli e decidere quale template utilizzare per mostrare il risultato all’utente finale;
-    \item infine, si definiscono i \textbf{template}, file html che descrivono la presentazione dei dati cooperando con la \textbf{vista} del pattern ed utlizzando i dati provenienti da essa.
+    \item infine, si definiscono i \textbf{template}, file HTML che descrivono la presentazione dei dati cooperando con la \textbf{vista} del pattern ed utlizzando i dati provenienti da essa.
 \end{enumerate}
 
 Questa suddivisione consente a diverse figure professionali, di lavorare in modo indipendente alle parti dell’applicazione di propria competenza: gli sviluppatori si dedicheranno al modello dei dati e alle viste, i Web designer ai template.
@@ -240,19 +240,19 @@ Il \textbf{modello} comunica direttamente con il server di database, che tramite
 
 La \textbf{vista} è una funzione che viene invocata quando l’utente apre una qualsiasi pagina sul sito Web, e gestisce la richiesta del client, spesso interrogando il database, restituendo tutti i dati necessari per strutturare correttamente ed in modo completo la pagina Web.
 
-La funzione dei \textbf{template} è quella di trasformare le informazioni logiche in elementi di markup html.
+La funzione dei \textbf{template} è quella di trasformare le informazioni logiche in elementi di markup HTML.
 % Come si può notare dall’immagine xxx i dettagli del post (immagine, titolo, e sottotitolo) non sono hard-coded ma sono ricavate dalle variabili recuperate dalla vista.
-I template sono semplici file html, con una sintassi adattata per le variabili di Django; è inoltre possibile eseguire funzioni direttamente all’interno del codice in caso di necessità.
+I template sono semplici file HTML, con una sintassi adattata per le variabili di Django; è inoltre possibile eseguire funzioni direttamente all’interno del codice in caso di necessità.
 
-Quando viene effettuata una richiesta, il server di Django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina html pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework, Django effettua un server-side rendering: il server effettua tutte le operazioni necessarie, e poi restituisce al browser client solamente il codice html.
-Altri framework, come React o Vue.js, basati su javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito Web.
+Quando viene effettuata una richiesta, il server di Django effettua tutte le operazioni attraverso le viste e restituisce all’utente una pagina HTML pura senza variabili o dati sensibili. Questo perché, a differenza di altri framework, Django effettua un server-side rendering: il server effettua tutte le operazioni necessarie, e poi restituisce al browser client solamente il codice HTML.
+Altri framework, come React o Vue.js, basati su Javascript, effettuano invece tutte le operazioni a livello client attraverso il browser, dinamicizzando così il sito Web.
 
 Entrambe le opzioni sono valide, la scelta dipende dal contesto:
 \begin{itemize}
     \item \textbf{server-side} rendering: gode di migliori performance, di sicurezza dei dati, ma le pagine Web rimangono statiche;
-    \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
+    \item \textbf{client-side} rendering: gode di peggiori performance (variabili in base a prestazioni del dispositivo e scelta del browser), ma lavorando con Javascript, si riesce a rendere le pagine dinamiche senza ricaricarle.
 \end{itemize}
-Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura \textbf{sicura} attraverso l’isolamento dei dati tramite server-side e \textbf{dinamica} tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template Django html.
+Scegliere una delle due soluzioni non esclude l’altra, ma è possibile combinarle per costruire una struttura \textbf{sicura} attraverso l’isolamento dei dati tramite server-side e \textbf{dinamica} tramite client-side. Per questo, per Cubo si adotta l’innesto di script Vue.js nei template Django HTML.
 
 \subsubsection{Modelli astratti}
 Con modelli astratti si intende la creazione di classi standard (o estensione di classi Django), estendibili ed adattabili a molteplici situazioni. Per esempio, la classe astratta \textit{StandardPageMetaModel} è utilizzata come classe padre per ogni modello sul database, dato che racchiude al suo interno attributi di base comuni ad ogni modello, come titolo, sottotitolo, data di creazione/modifica, slug, immagine.
@@ -275,7 +275,7 @@ Oltre a \textit{BaseCreate}, vengono riportate per completezza anche le altre cl
     class PostCreate(BaseCreate):
         model = Post
         form_class = PostForm
-        template_name = "blog/admin/post_form.html"
+        template_name = "blog/admin/post_form.HTML"
         success_message = "%(title_it)s salvato
                            con successo."
 \end{verbatim}
@@ -326,11 +326,11 @@ Per ogni applicazione, oltre a definire i modelli estendendo il padre \textit{St
                        "tags": Select2MultipleWidget}
 \end{verbatim}
 
-Per quanto riguarda i template delle specifiche applicazioni, si applica, anche su di essi, il principio dell'ereditarietà (come nei modelli e nelle viste), perché ogni template estende il padre \textit{\_base.html}. Il template padre definisce la struttura base della pagina html comprensiva di tutte le sue parti. Questo template è suddiviso in blocchi per integrarsi meglio e senza ripetizione di codice una volta che viene esteso. Suddividere in blocchi un tempalte significa suddividere la pagina porzioni di codice. Per esempio una pagina html è possibile inizialmente suddividerla in due blocchi: \textit{head} e \textit{body}. Il file \textit{\_base.html} prenderà quindi la struttura di:
+Per quanto riguarda i template delle specifiche applicazioni, si applica, anche su di essi, il principio dell'ereditarietà (come nei modelli e nelle viste), perché ogni template estende il padre \textit{\_base.HTML}. Il template padre definisce la struttura base della pagina HTML comprensiva di tutte le sue parti. Questo template è suddiviso in blocchi per integrarsi meglio e senza ripetizione di codice una volta che viene esteso. Suddividere in blocchi un tempalte significa suddividere la pagina porzioni di codice. Per esempio una pagina HTML è possibile inizialmente suddividerla in due blocchi: \textit{head} e \textit{body}. Il file \textit{\_base.HTML} prenderà quindi la struttura di:
 
 \begin{Verbatim}[commandchars=\\\[\]]
 _______________________________________________________
-<html>
+<HTML>
     <head>
         \verbatimbold[{% block head %}]
             <meta charset="utf-8">
@@ -349,15 +349,15 @@ _______________________________________________________
             </p>
         \verbatimbold[{% endblock body %}]
     </body>
-</html>
+</HTML>
 _______________________________________________________
 \end{Verbatim}
 Per questo esempio si presuppone che ogni pagina abbia gli stessi tag nel tag \textit{head}.
-In questo caso, per la "pagina figlio" che estende \textit{\_base.html} non è necessario riscrivere tutti i componenti html, ma solamente quelli diversi; dato che i tag head sono uguali per ogni pagina, nella pagina figlio, cambia solamente il blocco \textbf{body}. La pagina figlio ha quindi la seguente implementazione:
+In questo caso, per la "pagina figlio" che estende \textit{\_base.HTML} non è necessario riscrivere tutti i componenti HTML, ma solamente quelli diversi; dato che i tag head sono uguali per ogni pagina, nella pagina figlio, cambia solamente il blocco \textbf{body}. La pagina figlio ha quindi la seguente implementazione:
 
 \begin{Verbatim}[commandchars=\\\[\]]
 ______________________________________________________
-\verbatimbold[{% extends '_base.html' %}]
+\verbatimbold[{% extends '_base.HTML' %}]
 
 \verbatimbold[{% block body %}]
     <h1>Pagina figlio</h1>
@@ -368,8 +368,8 @@ ______________________________________________________
 \verbatimbold[{% endblock body %}]
 ______________________________________________________
 \end{Verbatim}
-Grazie all'utilizzo dei blocchi è possibile quindi apportare modifiche al blocco \textit{head} nel file \textit{\_base.html} e vederle riflesse anche nella pagina \textit{post.html} senza dover cambiare altri file.
-In questo esempio sono stati utilizzati solamente due blocchi (head e body), mentre in Cubo ne son presenti \textbf{più di trenta}, che suddividono la pagina in piccole sezioni. La tecnica dell'ereditarietà dei template è estremamente utile ed utilizzata per la personalizzazione dei contenuti dei template figlio (come \textit{post.html}), ma mantentendo la scrittura del codice pulita e senza riscrivere lo stesso pezzo di codice in parti diverse del progetto.
+Grazie all'utilizzo dei blocchi è possibile quindi apportare modifiche al blocco \textit{head} nel file \textit{\_base.HTML} e vederle riflesse anche nella pagina \textit{post.HTML} senza dover cambiare altri file.
+In questo esempio sono stati utilizzati solamente due blocchi (head e body), mentre in Cubo ne son presenti \textbf{più di trenta}, che suddividono la pagina in piccole sezioni. La tecnica dell'ereditarietà dei template è estremamente utile ed utilizzata per la personalizzazione dei contenuti dei template figlio (come \textit{post.HTML}), ma mantentendo la scrittura del codice pulita e senza riscrivere lo stesso pezzo di codice in parti diverse del progetto.
 
 \subsubsection{Personalizzazione per cliente}
 Può capitare che lo stesso template soddisfi le esigenze di un cliente, ma non quelle di un altro, in questo caso Cubo permette sovrascrittura dei file template in modo da poterlo strutturare diversamente senza sovrascrivere il file originale. Per comprendere al meglio questa parte è necessario definire come viene importato Cubo dentro ad ogni applicazione Web.
@@ -392,27 +392,28 @@ Cubo è un CMS completo che copre l'80\% circa delle richieste dei clienti, ma p
 Il workflow segue il paradigma MVT (Model-View-Template) precedentemente discusso alla sezione \ref{mvt}. Si parte quindi dalla creazione del Modello con i relativi attributi, si passa dalla View per gestire la richiesta e servire i dati richiesti, ed infine si arriva al Template per visualizzare i graficamente la risposta.
 
 Una volta creato il modello è però necessario comunicare al database le modifiche apportate alla struttura delle tabelle sul database.
-I \textbf{file di migrazioni} sono il mezzo attraverso il quale i cambiamenti che vengono effettuati nei Modelli, vengono effettivamente riflessi anche nelle tabelle sul database.
-Ogni volta che vegnoni effettuate modifiche ai file dei modelli, è necessario generare anche i file di migrazione. Django include i comandi per autogenerare i file di migrazioni (1) e per riflettere le modifiche sul database per rendere effettivi i cambiamenti (2):
+I \textbf{file di migrazioni} sono il mezzo attraverso il quale i cambiamenti che vengono effettuati nei Modelli vengono effettivamente riflessi anche nelle tabelle sul database.
+Ogni volta che vengono effettuate modifiche ai file dei modelli, è necessario generare anche i file di migrazione. Django include i comandi per autogenerare i file di migrazioni (1) e per riflettere le modifiche sul database per rendere effettivi i cambiamenti (2):
 \begin{verbatim}
             python manage.py makemigrations     (1)
             python manage.py migrate            (2)
 \end{verbatim}
 
+
 \subsection{Pannello amministratore}
-Una volta sviulppato il sito Web, è necessario configurare gli opportuni parametri. Tutta l'impostazione del sito Web parte dal pannello amministratore dove è possibile modificare le configurazioni del sito e delle varie applicazioni e caricare i contenuti che si andranno poi a visualizzare a livello utente.
+Una volta sviluppato il sito Web, è necessario configurare gli opportuni parametri. Tutta l'impostazione del sito Web parte dal pannello amministratore dove è possibile modificare le configurazioni del sito e delle varie applicazioni e caricare i contenuti che si andranno poi a visualizzare a livello utente.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{admin.png}
     \caption{Schema di Cubo}
 \end{figure}
-Nelle configurazioni del sito Web si vanno a settare i contatti, le mail, le informazioni legali, i link ai social, analytics e la privacy policy.
+Nelle configurazioni del sito Web si vanno a settare i contatti, le email, le informazioni legali, i link ai social, analytics e la privacy policy.
 Ogni applicazione dispone delle proprie modalità ed impostazioni di caricamento contenuti, in base alle esigenze ed alle necessità del caso d'utilizzo. Per esempio per l'applicazione \textit{Blog} invece si vanno a creare i tag, le categorie e gli articoli per il Blog.
 Per l'applicazione \textit{E-commerce} si vanno ad impostare i corrieri e le relative zone di spedizione.
 
 \subsubsection{Blocchi Cubo}
 Come ogni CMS che si rispetti, anche Cubo mette a disposizione dei "blocchi" prefabbricati per la costruzione di una pagina. I blocchi sono una libreria di elementi predefiniti che permettono di aggiungere contenuti dinamici, nelle varie pagine del sito, che l'amministratore crea dal pannello admin.
-L'attività svolta ha afforntato lo sviluppo di blocchi per gestire i seguenti tipi di componenti:
+L'attività svolta ha affrontato lo sviluppo di blocchi per gestire i seguenti tipi di componenti:
 \begin{itemize}
     \item \textbf{testo}: fornisce un campo dove è possibile inserire il testo personalizzando il carattere e formattazione;
     \item \textbf{immagini}: permette di inserire una o più immagini;
@@ -449,17 +450,17 @@ Con acquistare e mantenere un server fisico si intende l’acquisto di tutti i c
     \item gestire i malfunzionamenti hardware-software;
 \end{itemize}
 
-Come si può notare dall’elenco delle competenze, sono necessari uno o più sistemisti che si dedichino alla gestione del server, e di tutto ciò che gli gira intorno.
-Scegliere questa alternativa implica avere la responsabilità completa della gestione del server dalla propria parte, ma anche che nessun ente esterno avrà i permessi di accedere ai dati, e che la privacy dell’intero ecosistema è garantite. Uno svantaggio da tenere in considerazione con questa opzione è che i componenti non sono durevoli, possono danneggiarsi, guastarsi, e vanno quindi sostituiti con dei componenti nuovi. Inoltre è necessario preoccuparsi del monitoraggio dello stato della sicurezza della piattaforma e del suo aggiornamento costante.
+Come si può notare dall’elenco delle competenze, sono necessari uno o più sistemisti che si dedichino alla gestione del server e di tutto ciò che gli gira intorno.
+Scegliere questa alternativa implica avere la responsabilità completa della gestione del server dalla propria parte, ma anche che nessun ente esterno avrà i permessi di accedere ai dati e che la privacy dell’intero ecosistema è garantita. Uno svantaggio da tenere in considerazione con questa opzione è che i componenti non sono durevoli, possono danneggiarsi, guastarsi, e vanno quindi sostituiti con dei componenti nuovi. Inoltre è necessario preoccuparsi del monitoraggio dello stato della sicurezza della piattaforma e del suo aggiornamento costante.
 
 \subsubsection{Adozione di un server dedicato in cloud}
 Con adottare un server in cloud dedicato si intende l’utilizzo di una IaaS (Infrastructure as a Service). A differenza della soluzione precedente, questa opzione risparmia tre passaggi fondamentali del setup di un server: acquisto componenti, composizione server e installazione sistema operativo.
-Questa soluzione è perfetta per chi vuole la completa autonomia sul proprio server, in modo da poter gestire applicazioni complesse, ma allo stesso tempo non deve tener conto degli svantaggi dell’opzione precedente. Le performance dei server sono garantite dal provider del servizio che curerà l’obsolescenza dei componenti e la loro costante manutenzione. Il provider inoltre si fa carico di alcuni livelli di sicurezza per l’accesso alle risorse. Esempi di aziende che offrono queste infrastrutture sono Digitalocean, Amazon Lightsail, Google cloud platform o Microsoft Azure.
+Questa soluzione è perfetta per chi vuole la completa autonomia sul proprio server, in modo da poter gestire applicazioni complesse, ma allo stesso tempo non deve tener conto degli svantaggi dell’opzione precedente. Le performance dei server sono garantite dal provider del servizio che curerà l’obsolescenza dei componenti e la loro costante manutenzione. Il provider inoltre si fa carico di alcuni livelli di sicurezza per l’accesso alle risorse. Esempi di aziende che offrono queste infrastrutture sono Digitalocean, Amazon Lightsail, Google cloud platform, Microsoft Azure.
 
 \subsubsection{Adozione di server cloud virtuale}
 Con adozione di uno spazio gestito si intende l’utilizzo di una PaaS (Platform as a Service). Questa soluzione permette allo sviluppatore di concentrarsi unicamente sullo sviluppo di applicazioni migliori, senza investire tempo nella preparazione e manutenzione del server e del software di gestione, che sarà completamente a carico del provider della piattaforma.
 Il modello di piattaforma più diffuso negli ultimi anni è sicuramente Docker~[6], una tecnologia di containerizzazione che consente la creazione e l'utilizzo dei container Linux.
-Un container Linux~[1] è un insieme di uno o più processi isolati dal resto del sistema. Poiché tutti i file necessari per eseguire tali processi vengono forniti da un'immagine distinta, i container Linux sono portabili e coerenti in tutti gli ambienti, dallo sviluppo, ai test, fino alla produzione. Questo li rende molto più veloci rispetto ai tradizionali flussi di sviluppo che dipendono dalla replica degli ambienti di test tradizionali. I container, oltre a godere di una grandissima popolarità e ad essere apprezzati per la loro facilità d'uso, hanno un ruolo importante anche nella sicurezza IT, poiché la compromissione di un singolo container non va ad influire sull’intero sistema.
+Un container Linux è un insieme di uno o più processi isolati dal resto del sistema. Poiché tutti i file necessari per eseguire tali processi vengono forniti da un'immagine distinta, i container Linux sono portabili e coerenti in tutti gli ambienti, dallo sviluppo, ai test, fino alla produzione. Questo li rende molto più veloci rispetto ai tradizionali flussi di sviluppo che dipendono dalla replica degli ambienti di test tradizionali. I container, oltre a godere di una grandissima popolarità e ad essere apprezzati per la loro facilità d'uso, hanno un ruolo importante anche nella sicurezza IT, poiché la compromissione di un singolo container non va ad influire sull’intero sistema.
 Docker considera i container come macchine virtuali modulari estremamente leggere, offrendo la flessibilità di creare, distribuire, copiare e spostare i container da un ambiente all'altro, ottimizzando così le app per il cloud.
 
 Come si può notare dall’immagine sottostante, a differenza delle classiche macchine virtuali, i container linux condividono lo stesso sistema operativo, e risultano quindi molto più performanti, motivo principale della loro diffusione.
@@ -509,7 +510,7 @@ Per la scelta della CDN, per i siti Web basati su Cubo, si utilizza \textbf{Clou
 \clearpage
 \section{Conclusioni}
 \label{conclusioni}
-In questo documento di tesi si son presentati gli aspetti piu importatanti del tirocinio svolto presso Studio Indaco, nell'ambito dello sviluppo di un Content Management System denominato Cubo.
+In questo documento di tesi sono stati presentati gli aspetti piu importatanti del tirocinio svolto presso Studio Indaco nell'ambito dello sviluppo di un Content Management System denominato Cubo.
 L'attività ha visto in particolare lo sviluppo di diverse applicazioni Django all'interno del CMS utili per lo sviluppo di applicazioni Web in diversi contesti applicativi.
 Una parte considerevole dell'attività ha inoltre affrontato l'analisi e lo studio di infrastrutture Cloud per il deployment dei siti Web.
 Le applicazioni Web sviluppate sono attualmente funzionanti e in uso presso diversi clienti dell'azienda.
@@ -519,9 +520,14 @@ Si pianifica inoltre che il CMS Cubo diverrà in un futuro prossimo un progetto 
 \section*{Ringraziamenti}
 \addcontentsline{toc}{section}{Ringraziamenti}
 A conclusione di questo elaborato, desidero menzionare tutte le persone, senza le quali questo lavoro di tesi non esisterebbe nemmeno.
-Ringrazio il mio relatore Luca Ferretti, che in questi mesi di lavoro, ha saputo guidarmi, con suggerimenti pratici, nelle ricerche e nella stesura dell’elaborato.
-Ringrazio di cuore i miei genitori, per avermi sempre sostenuto e per avermi permesso di portare a termine gli studi universitari.
+Ringrazio il mio relatore Ing. Luca Ferretti, che in questi mesi di lavoro, ha saputo guidarmi, con suggerimenti pratici, nelle ricerche e nella stesura dell’elaborato.
+%
 Ringrazio tutto lo staff di Studio Indaco, per l’ospitalità, la professionalità e per le skills acquisite sul campo.
+%
+Ringrazio i miei genitori, il loro costante sostegno ed i loro insegnamenti senza i quali oggi non sarei ciò che sono.
+%
+Ringrazio Francesco, Martina, i miei amici, i miei compagni di università e tutti quelli che hanno incrociato la loro vita con la mia lasciandomi qualcosa di buono. Grazie per essere stati miei complici, ognuno a suo modo, in questo percorso intenso ed entusiasmante, nel bene e nel male. Sono così tanti i ricordi che mi passano per la testa che è impossibile trovare le parole giuste per onorarli. A farlo saranno le mie emozioni e i miei sorrisi che insieme si mescolano in un bagaglio di affetto sincero e gratitudine per tutti voi.
+%
 Infine, vorrei dedicare questo piccolo traguardo a me stesso, che possa essere l’inizio di una lunga e brillante carriera professionale.
 \clearpage
 
